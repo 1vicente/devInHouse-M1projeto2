@@ -1,67 +1,70 @@
-<div class="d-flex flex-row justify-content-center align-items-stretch mb-3">
-    <div class="text-danger">
-        <img src="https://telemedicinamorsch.com.br/wp-content/uploads/2019/11/prontuario-eletronico-2048x1365.jpeg" alt="" width="680" height="542">
-    </div>
-    <div class="d-flex flex-column">
-        <h2>Login</h2>
-
-        <div class="d-flex flex-row">
-            <p>Não possuí conta?</p>
-            <button data-bs-toggle="modal" data-bs-target="#exampleModal">Criar conta</button>
+<div class="d-flex flex-row justify-content-center align-items-center divContainer">
+    <div class="d-flex flex-row justify-content-center align-items-stretch mb-3 containerLogin">
+        <div class="d-flex justify-content-center align-items-center backgroundIMG ">
+            <img src="https://telemedicinamorsch.com.br/wp-content/uploads/2019/11/prontuario-eletronico-2048x1365.jpeg" alt="" width="680" height="482">
         </div>
-
-        <form (ngSubmit)="onSubmit()" #form="ngForm" class="d-flex flex-column">
-            <label for="email-login">E-mail</label>
-            <input type="email" name="email-login" placeholder="usuario@provedor.com" [(ngModel)]="emailLogin">
-            <label for="senha-login">Senha</label>
-            <input type="password" name="senha-login" placeholder="abroba" [(ngModel)]="senhaLogin">
-            <button type="submit">
-                Entrar!
-            </button>
-        </form>
-
-        <div class="d-flex flex-column">
-            <button (click)="alert=true">Esqueceu sua senha?</button>
-
-            <div *ngIf="alert==true" class="alert alert-danger" role="alert">
-                Função desabilitada temporariamente.
+        <div class="d-flex flex-column p-3 loginForm">
+            <div class="d-flex flex-row justify-content-end">
+                <p class="m-1">Não possuí uma conta?</p>
+                <button class="btn btn-sm btn-outline-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">Criar Conta</button>
             </div>
-        
+
+            <div class="p-4 mt-3">
+                <h1 class="mt-5 mb-4">Login</h1>
+
+                <form class="d-flex flex-column" (ngSubmit)="loginForm()" >
+                    <label class="mb-2" for="email-login">E-mail</label>
+                    <input class="mb-4" type="email" name="emailLogin" [(ngModel)]="emailLogin">
+                    <label class="mb-2" for="senha-login">Senha</label>
+                    <input class="mb-4" type="password" name="senhaLogin" [(ngModel)]="senhaLogin">
+                    <button class="mb-5 btn btn-primary" type="submit" value="submit">
+                        Entrar!
+                    </button>
+                    <p *ngIf="resultadoLogin===true">Logado com sucesso!</p>
+                </form>
+
+                <div class="d-flex flex-column">
+                    <button class="btn btn-sm bntForgetPass"(click)="alert=true">Esqueceu sua senha?</button>
+
+                    <div *ngIf="alert==true" class="alert alert-danger text-center" role="alert">
+                        Função desabilitada temporariamente.
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
 
 
  
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-    <div class="modal-content">
-    <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-        <form (ngSubmit)="cadastroLogin()" #form="ngForm" class="d-flex flex-column">
-            <label for="cadastroEmail">E-mail</label>
-            <input type="email" name="cadastroEmail">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form  class="d-flex flex-column" [formGroup]="form" (ngSubmit)="cadastroForm()">
+                <label for="cadastroEmail">E-mail</label>
+                <input class="mb-2" type="email" formControlName="cadastroEmail"  [ngClass]="form.controls['cadastroEmail'].valid == false ? 'campoInvalido' : ''">
 
-            <label for="cadastroSenha">Senha</label>
-            <input type="text" name="cadastroSenha" >
-            <sub>Mínimo de 8 caracteres</sub>
+                <label for="cadastroSenha">Senha</label>
+                <input class="mb-1" type="password" formControlName="cadastroSenha" [ngClass]="form.controls['cadastroSenha'].valid == false && form.controls['cadastroSenha'].value != '' ? 'campoInvalido' : ''">
+                <sub class="mb-3">Mínimo de 8 caracteres</sub>
 
-            <label for="cadastroConfirmaSenha">Digite novamente a senha</label>
-            <input type="text" name="cadastroConfirmaSenha" >
+                <label for="cadastroConfirmaSenha">Digite novamente a senha</label>
+                <input class="mb-2" type="password" formControlName="cadastroConfirmaSenha" [ngClass]="form.controls['cadastroConfirmaSenha'].value != form.controls['cadastroSenha'].value && form.controls['cadastroConfirmaSenha'].value !=''? 'campoInvalido' : ''" >
+                <button class="btn btn-primary mt-3" type="submit" value="submit" [disabled]="form.invalid">
+                    Criar Conta
+                </button>
+                <p *ngIf="retornoCadastro=='cadastrado'" class="alert alert-success mt-3 text-center" role="alert">Cadastro realizado com sucesso!</p>
+            </form>
 
-            <button type="submit" [disabled]="!form.form.valid">
-                Save
-            </button>
-        </form>
+        </div>
+        </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-    </div>
-    </div>
-</div>
 </div>

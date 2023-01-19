@@ -1,0 +1,33 @@
+.divContainer {
+    height: 100vh;
+    width: 100vw;
+    /* background-color: #F5F5F5; */
+}
+
+.containerLogin {
+    height: 75vh;
+    width: 60vw;
+}
+
+.campoInvalido {
+    border: solid #a51919;
+}
+
+.backgroundIMG {
+    background: rgba(255, 255, 255, 0.1);
+    border-right: 4px solid #1975A5;
+    border-radius: 4px;
+}
+
+.loginForm {
+    width: 30vw;
+}
+
+.bntForgetPass:hover {
+    text-decoration: underline
+}
+
+input {
+    border: 1px solid #5C5F63;
+    border-radius: 8px;
+}
