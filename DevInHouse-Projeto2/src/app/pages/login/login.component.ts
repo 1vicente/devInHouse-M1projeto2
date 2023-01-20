@@ -46,7 +46,7 @@ export class LoginComponent {
     }
     );
 
- constructor(private fb: FormBuilder, private cadastroService: LocalStorageService) {}
+ constructor(private fb: FormBuilder, private localStorage: LocalStorageService) {}
 
   cadastroForm() {
     let formsCadastro = {
@@ -54,17 +54,18 @@ export class LoginComponent {
       email: this.form.controls['cadastroEmail'].value,
       senha: this.form.controls['cadastroSenha'].value
     }
-    this.retornoCadastro = this.cadastroService.cadastro(formsCadastro)
+    this.retornoCadastro = this.localStorage.cadastro(formsCadastro)
   }
 
   loginForm() {
-    let resultadoLogin = this.cadastroService.login(this.emailLogin, this.senhaLogin)
+    let resultadoLogin = this.localStorage.login(this.emailLogin, this.senhaLogin)
 
     if ( typeof resultadoLogin !== 'undefined') {
-      this.cadastroService.usuarioLogado(resultadoLogin)
+      this.localStorage.usuarioLogado(resultadoLogin)
       this.controleLogin = !!resultadoLogin
     } else {
       this.controleLogin = false
     }
   }
+ 
 }

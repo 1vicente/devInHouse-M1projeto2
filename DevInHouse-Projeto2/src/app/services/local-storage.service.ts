@@ -28,8 +28,9 @@ export class LocalStorageService {
   usuarioLogado(usuario: any) {
     console.log(usuario)
     localStorage.setItem('usuarioLogado', JSON.stringify(usuario))
-
-    
   }
   
+  usuarioAtivo () {
+    return !!localStorage.getItem('usuarioLogado')
+  }
 }

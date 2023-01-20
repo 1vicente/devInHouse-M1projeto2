@@ -17,7 +17,7 @@
                     <input class="mb-4" type="email" name="emailLogin" [(ngModel)]="emailLogin">
                     <label class="mb-2" for="senha-login">Senha</label>
                     <input class="mb-4" type="password" name="senhaLogin" [(ngModel)]="senhaLogin">
-                    <button class="mb-5 btn btn-primary" type="submit" value="submit">
+                    <button routerLink="/inicio" class="mb-5 btn btn-primary" type="submit" value="submit">
                         Entrar!
                     </button>
                     <p *ngIf="controleLogin===true">Logado com sucesso!</p>
