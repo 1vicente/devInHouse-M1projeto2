@@ -20,15 +20,16 @@ export class LocalStorageService {
   login(emailLogin: string, senhaLogin: string){
     let localStorageUsuarios = localStorage.getItem('Usuarios')
     let localStorageUsuariosTemp = JSON.parse(localStorageUsuarios)
-    localStorageUsuariosTemp.forEach(element => {
-      if (emailLogin == element.email) {
-        console.log("Email encontrado ", emailLogin, element.email)
-        if (senhaLogin == element.senha) {
-        console.log("Senha confere", senhaLogin, element.senha)
-        } else {
-          console.log("combinação não encontrada")
-        }
-      }
-    });
+
+    let result = localStorageUsuariosTemp.find(element => element.email == emailLogin && element.senha == senhaLogin)
+    return result
+    }
+
+  usuarioLogado(usuario: any) {
+    console.log(usuario)
+    localStorage.setItem('usuarioLogado', JSON.stringify(usuario))
+
+    
   }
+  
 }

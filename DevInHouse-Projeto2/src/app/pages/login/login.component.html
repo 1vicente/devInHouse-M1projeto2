@@ -20,7 +20,8 @@
                     <button class="mb-5 btn btn-primary" type="submit" value="submit">
                         Entrar!
                     </button>
-                    <p *ngIf="resultadoLogin===true">Logado com sucesso!</p>
+                    <p *ngIf="controleLogin===true">Logado com sucesso!</p>
+                    <p *ngIf="controleLogin===false" class="alert alert-danger text-center" >Usuário e/ou senha inválidos</p>
                 </form>
 
                 <div class="d-flex flex-column">

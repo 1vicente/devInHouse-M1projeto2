@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Validators, FormBuilder  } from '@angular/forms';
+import { Validators, FormBuilder, isFormArray  } from '@angular/forms';
 import { ValidaSenhaModule } from './modulos/valida-senha/valida-senha.module';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 @Component({
@@ -14,7 +14,7 @@ export class LoginComponent {
  emailLogin:string;
  senhaLogin:string;
 
- resultadoLogin:any;
+ controleLogin:any;
 
  retornoCadastro:string;
 
@@ -58,6 +58,13 @@ export class LoginComponent {
   }
 
   loginForm() {
-    this.resultadoLogin=this.cadastroService.login(this.emailLogin, this.senhaLogin)
+    let resultadoLogin = this.cadastroService.login(this.emailLogin, this.senhaLogin)
+
+    if ( typeof resultadoLogin !== 'undefined') {
+      this.cadastroService.usuarioLogado(resultadoLogin)
+      this.controleLogin = !!resultadoLogin
+    } else {
+      this.controleLogin = false
+    }
   }
 }
