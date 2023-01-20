@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Validators, FormBuilder, isFormArray  } from '@angular/forms';
+import { Validators, FormBuilder  } from '@angular/forms';
 import { ValidaSenhaModule } from './modulos/valida-senha/valida-senha.module';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 @Component({
