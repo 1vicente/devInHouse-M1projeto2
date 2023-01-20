@@ -9,6 +9,7 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
 import { EstatisticasComponent } from './components/estatisticas/estatisticas.component';
+import { InformacoesComponent } from './components/informacoes/informacoes.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { EstatisticasComponent } from './components/estatisticas/estatisticas.co
     MenuComponent,
     CabecalhoComponent,
     EstatisticasComponent,
+    InformacoesComponent,
   ],
   imports: [
     BrowserModule,
