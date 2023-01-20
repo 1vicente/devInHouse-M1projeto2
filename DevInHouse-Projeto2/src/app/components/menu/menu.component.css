@@ -15,3 +15,8 @@ nav {
 .headerMenu {
     font-size: 38px;
 }
+
+.color {
+    background: #1975A5;
+    border-right: 2px solid rgba(25, 117, 165, 0.7);
+}

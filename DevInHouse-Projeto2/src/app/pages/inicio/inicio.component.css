@@ -1,5 +1,6 @@
 body{
     min-height: 100vh;
+    background-color: #f9F9FA;
 }
 
 .menu {
@@ -10,4 +11,13 @@ body{
 .header {
     width: 100%;
     height: 60px;
+}
+
+.corpo {
+    width: 100%;
+}
+
+.color {
+    background: #1975A5;
+    border-right: 2px solid rgba(25, 117, 165, 0.7);
 }

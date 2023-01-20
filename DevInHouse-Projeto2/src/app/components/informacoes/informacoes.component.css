@@ -1,0 +1,8 @@
+.cardPacientes { 
+    height: 351px;
+    width: 351px;
+    background: rgb(25,117,165);
+    background: linear-gradient(180deg, rgba(25,117,165,0.5) 22%, rgba(255,255,255,1) 22%);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.35);
+    border-radius: 4px;
+}
