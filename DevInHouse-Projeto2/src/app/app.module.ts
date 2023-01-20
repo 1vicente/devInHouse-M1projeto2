@@ -8,6 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
+import { EstatisticasComponent } from './components/estatisticas/estatisticas.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
     InicioComponent,
     MenuComponent,
     CabecalhoComponent,
+    EstatisticasComponent,
   ],
   imports: [
     BrowserModule,
