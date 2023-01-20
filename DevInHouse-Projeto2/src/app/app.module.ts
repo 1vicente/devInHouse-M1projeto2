@@ -10,6 +10,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
 import { EstatisticasComponent } from './components/estatisticas/estatisticas.component';
 import { InformacoesComponent } from './components/informacoes/informacoes.component';
+import { CadastroPacienteComponent } from './pages/cadastro-paciente/cadastro-paciente.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { InformacoesComponent } from './components/informacoes/informacoes.compo
     CabecalhoComponent,
     EstatisticasComponent,
     InformacoesComponent,
+    CadastroPacienteComponent,
   ],
   imports: [
     BrowserModule,
