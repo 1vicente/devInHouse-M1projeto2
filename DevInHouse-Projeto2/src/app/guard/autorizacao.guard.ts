@@ -16,6 +16,6 @@ export class AutorizacaoGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const usuarioLogado = this.localStorage.usuarioAtivo();
-    return usuarioLogado
+    return !!usuarioLogado
   }
 }

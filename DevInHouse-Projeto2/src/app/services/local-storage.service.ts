@@ -31,6 +31,8 @@ export class LocalStorageService {
   }
   
   usuarioAtivo () {
-    return !!localStorage.getItem('usuarioLogado')
+    let localStorageUsuarios = localStorage.getItem('usuarioLogado')
+    let localStorageUsuariosTemp = JSON.parse(localStorageUsuarios)
+    return localStorageUsuariosTemp
   }
 }

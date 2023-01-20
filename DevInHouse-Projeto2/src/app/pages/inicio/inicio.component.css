@@ -1,8 +1,13 @@
-.menuTeste {
-    min-height: 100vh;
-    width: 15vw;
-}
-
 body{
     min-height: 100vh;
+}
+
+.menu {
+    min-height: 100vh;
+    width: 17vw;
+}
+
+.header {
+    width: 100%;
+    height: 60px;
 }
