@@ -1,0 +1,18 @@
+.card {
+    height: 160px;
+    width: 343px;
+    background-color: white
+}
+
+.cardNumero {
+    font-size: 72px;
+}
+
+.categoria{
+    font-size: 20px;
+}
+
+.cards {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.35);
+    border-radius: 4px;
+}
