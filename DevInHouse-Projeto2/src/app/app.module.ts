@@ -11,6 +11,7 @@ import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
 import { EstatisticasComponent } from './components/estatisticas/estatisticas.component';
 import { InformacoesComponent } from './components/informacoes/informacoes.component';
 import { CadastroPacienteComponent } from './pages/cadastro-paciente/cadastro-paciente.component';
+import { ListaProntuariosComponent } from './pages/lista-prontuarios/lista-prontuarios.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CadastroPacienteComponent } from './pages/cadastro-paciente/cadastro-pa
     EstatisticasComponent,
     InformacoesComponent,
     CadastroPacienteComponent,
+    ListaProntuariosComponent,
   ],
   imports: [
     BrowserModule,
