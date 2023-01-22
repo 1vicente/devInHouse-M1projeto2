@@ -19,6 +19,12 @@ export class LoginComponent {
  retornoCadastro:string;
 
  form = this.fb.group({
+  cadastroNome: ['', {
+    validators: [
+       Validators.required
+    ],
+    updateOn: 'blur'
+  }],
   cadastroEmail: ['', {
         validators: [
            Validators.required,
@@ -51,8 +57,9 @@ export class LoginComponent {
   cadastroForm() {
     let formsCadastro = {
       id: Math.floor(Math.random() * 1000),
+      nome: this.form.controls['cadastroNome'].value,
       email: this.form.controls['cadastroEmail'].value,
-      senha: this.form.controls['cadastroSenha'].value
+      senha: this.form.controls['cadastroSenha'].value      
     }
     this.retornoCadastro = this.localStorage.cadastro(formsCadastro)
   }

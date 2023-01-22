@@ -35,4 +35,14 @@ export class LocalStorageService {
     let localStorageUsuariosTemp = JSON.parse(localStorageUsuarios)
     return localStorageUsuariosTemp
   }
+
+  cadastraPaciente(paciente: any) {
+    let localStorageUsuarios = localStorage.getItem('Pacientes')
+    console.log(localStorageUsuarios)
+    let localStorageUsuariosTemp = JSON.parse(localStorageUsuarios)
+    localStorageUsuariosTemp.push(paciente)
+
+    localStorage.setItem('Pacientes', JSON.stringify(localStorageUsuariosTemp))
+    return "cadastrado"
+  }
 }
