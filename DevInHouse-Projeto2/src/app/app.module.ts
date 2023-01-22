@@ -12,6 +12,7 @@ import { EstatisticasComponent } from './components/estatisticas/estatisticas.co
 import { InformacoesComponent } from './components/informacoes/informacoes.component';
 import { CadastroPacienteComponent } from './pages/cadastro-paciente/cadastro-paciente.component';
 import { ListaProntuariosComponent } from './pages/lista-prontuarios/lista-prontuarios.component';
+import { AreaLogadaComponent } from './pages/area-logada/area-logada.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ListaProntuariosComponent } from './pages/lista-prontuarios/lista-pront
     InformacoesComponent,
     CadastroPacienteComponent,
     ListaProntuariosComponent,
+    AreaLogadaComponent,
   ],
   imports: [
     BrowserModule,
