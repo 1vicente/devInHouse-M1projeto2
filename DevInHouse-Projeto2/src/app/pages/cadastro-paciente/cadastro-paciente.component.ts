@@ -13,6 +13,8 @@ export class CadastroPacienteComponent {
     nomeCompleto: ['', {
           validators: [
              Validators.required,
+             Validators.minLength(8),
+             Validators.maxLength(64)
           ],
           updateOn: 'blur'
       }],
@@ -25,13 +27,15 @@ export class CadastroPacienteComponent {
       cpf: [
         '', {
           validators: [
-            Validators.required],
+            Validators.required,
+            Validators.pattern('[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}')],
           updateOn: 'blur'
         }],
       rg: [
         '', {
           validators: [
-            Validators.required],
+            Validators.required,
+            Validators.maxLength(64)],
           updateOn: 'blur'
         }],
       estadoCivil: [
@@ -44,38 +48,54 @@ export class CadastroPacienteComponent {
       telefone: [
         '', {
           validators: [
-            Validators.required],
+            Validators.required,
+            Validators.pattern('(\\d{2}) \\d \\d{4}-\\d{5}')],
           updateOn: 'blur'
         }],
       email: [
       '', {
         validators: [
-          Validators.required,
           Validators.email],
         updateOn: 'blur'
       }],
       naturalidade: [
       '', {
         validators: [
-          Validators.required],
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(64)],
         updateOn: 'blur'
       }],
-      convenio: [
+      contatoEmergencia: [
       '', {
         validators: [
-          Validators.required],
+          Validators.required,
+          Validators.pattern('(\\d{2}) \\d \\d{4}-\\d{5}')],
+        updateOn: 'blur'
+        }],
+      listaAlergia: [
+      '', {
+        validators: [],
+        updateOn: 'blur'
+        }],
+      listaCuidados: [
+      '', {
+        validators: [],
+        updateOn: 'blur'
+        }],
+      convenio: [
+      '', {
+        validators: [],
         updateOn: 'blur'
       }],
       numeroCarteira: [
       '', {
-        validators: [
-          Validators.required],
+        validators: [],
         updateOn: 'blur'
       }],
       validade: [
       '', {
-        validators: [
-          Validators.required],
+        validators: [],
         updateOn: 'blur'
       }],
       cep: [
