@@ -17,7 +17,7 @@
                     <input class="form-control mb-3" type="email" name="emailLogin" [(ngModel)]="emailLogin">
                     <label class="form-label" for="senha-login">Senha</label>
                     <input class="form-control mb-5" type="password" name="senhaLogin" [(ngModel)]="senhaLogin">
-                    <button routerLink="/inicio" class="mb-5 btn btn-primary" type="submit" value="submit">
+                    <button routerLink="/arealogada" class="mb-5 btn btn-primary" type="submit" value="submit">
                         Entrar!
                     </button>
                     <p *ngIf="controleLogin===true">Logado com sucesso!</p>
@@ -49,8 +49,13 @@
         </div>
         <div class="modal-body">
             <form  class="d-flex flex-column" [formGroup]="form" (ngSubmit)="cadastroForm()">
+
+                <label class="form-label" for="cadastroNome">Nome Completo</label>
+                <input class="form-control mb-2" type="email" formControlName="cadastroNome"  [ngClass]="form.controls['cadastroNome'].valid == false && form.controls['cadastroNome'].value != '' ? 'campoInvalido' : ''">
+
+
                 <label class="form-label" for="cadastroEmail">E-mail</label>
-                <input class="form-control mb-2" type="email" formControlName="cadastroEmail"  [ngClass]="form.controls['cadastroEmail'].valid == false ? 'campoInvalido' : ''">
+                <input class="form-control mb-2" type="email" formControlName="cadastroEmail"  [ngClass]="form.controls['cadastroEmail'].valid == false && form.controls['cadastroEmail'].value != '' ? 'campoInvalido' : ''">
 
                 <label class="form-label" for="cadastroSenha">Senha</label>
                 <input class="form-control mb-1" type="password" formControlName="cadastroSenha" [ngClass]="form.controls['cadastroSenha'].valid == false && form.controls['cadastroSenha'].value != '' ? 'campoInvalido' : ''">
