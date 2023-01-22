@@ -23,3 +23,7 @@
 .titulo {
     width: 100%;
 }
+
+.debug {
+    background-color: red;
+}

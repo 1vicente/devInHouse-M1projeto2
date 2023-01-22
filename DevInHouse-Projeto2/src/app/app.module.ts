@@ -13,6 +13,7 @@ import { InformacoesComponent } from './components/informacoes/informacoes.compo
 import { CadastroPacienteComponent } from './pages/cadastro-paciente/cadastro-paciente.component';
 import { ListaProntuariosComponent } from './pages/lista-prontuarios/lista-prontuarios.component';
 import { AreaLogadaComponent } from './pages/area-logada/area-logada.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,14 @@ import { AreaLogadaComponent } from './pages/area-logada/area-logada.component';
     InformacoesComponent,
     CadastroPacienteComponent,
     ListaProntuariosComponent,
-    AreaLogadaComponent,
+    AreaLogadaComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
