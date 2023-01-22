@@ -1,0 +1,135 @@
+
+<div class="mainContainer m-4">
+    <form  class="d-flex flex-column p-4 " [formGroup]="formCadastroPaciente" >
+        <div class="d-flex justify-content-between ">
+            <h2>Identificação</h2>
+            <div class="">
+                <button>Editar</button>
+                <button>Deletar</button>
+                <button>Cancelar</button>
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-between">
+            <div class="d-flex flex-column custom">
+                <label class="form-label" for="nomeCompleto">Nome Completo</label>
+                <input class="form-control mb-2" type="text" formControlName="nomeCompleto">
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="genero">Gênero</label>
+                <select class="form-select mb-1" formControlName="genero">
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                </select>
+            </div>
+
+            <div class="d-flex flex-column pequeno">
+                <label class="form-label" for="dataNascimento">Data de Nascimento</label>
+                <input class="form-control mb-2" type="date" formControlName="dataNascimento">
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="cpf">CPF</label>
+                <input class="form-control mb-2" type="text" formControlName="cpf">
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="rg">RG</label>
+                <input class="form-control mb-2" type="text" formControlName="rg">
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="estadoCivil">Estado Civil</label>
+                <select class="form-select mb-1" formControlName="estadoCivil">
+                    <option value="masculino">Solteiro(a)</option>
+                    <option value="feminino">Casado(a)</option>
+                    <option value="feminino">Divorciado(a)</option>
+                    <option value="feminino">Viúvo(a)</option>
+                </select>
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="telefone">Telefone</label>
+                <input class="form-control mb-2" type="text" formControlName="telefone">
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="email">E-mail</label>
+                <input class="form-control mb-2" type="email" formControlName="email">
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="naturalidade">Naturalidade</label>
+                <input class="form-control mb-2" type="text" formControlName="naturalidade">
+            </div>
+
+
+            <div class="titulo">
+                <h2>Convênio</h2>
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="convenio">Convênio</label>
+                <input class="form-control mb-2" type="email" formControlName="convenio">
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="numeroCateira">Número da Carteira</label>
+                <input class="form-control mb-2" type="text" formControlName="numeroCateira">
+            </div>
+
+            <div class="d-flex flex-column medio    ">
+                <label class="form-label" for="validade">Validade</label>
+                <input class="form-control mb-2" type="date" formControlName="validade">
+            </div>
+            
+            <div class="titulo">
+                <h2>Endereço</h2>
+            </div>
+            
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="cep">CEP</label>
+                <input class="form-control mb-2" type="text" formControlName="cep">
+            </div>
+
+            <div class="d-flex flex-column custom">
+                <label class="form-label" for="cidade">Cidade</label>
+                <input class="form-control mb-2" type="text" formControlName="cidade">
+            </div>
+
+            <div class="d-flex flex-column pequeno">
+                <label class="form-label" for="estado">Estado</label>
+                <input class="form-control mb-2" type="text" formControlName="estado">
+            </div>
+
+            <div class="d-flex flex-column grande">
+                <label class="form-label" for="logradouro">Logradouro</label>
+                <input class="form-control mb-2" type="text" formControlName="logradouro">
+            </div>
+
+            <div class="d-flex flex-column pequeno">
+                <label class="form-label" for="numero">Número</label>
+                <input class="form-control mb-2" type="number" formControlName="numero">
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="complemento">Complemento</label>
+                <input class="form-control mb-2" type="text" formControlName="complemento">
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="bairro">Bairro</label>
+                <input class="form-control mb-2" type="text" formControlName="bairro">  
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="pontoReferencia">Ponto de Referência</label>
+                <input class="form-control mb-2" type="text" formControlName="pontoReferencia">  
+            </div>
+        </div>
+
+
+
+    </form>
+</div>
