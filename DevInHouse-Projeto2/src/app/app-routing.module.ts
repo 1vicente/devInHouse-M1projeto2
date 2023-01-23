@@ -19,6 +19,7 @@ const routes: Routes = [
   {
     path: 'arealogada',
     component: AreaLogadaComponent,
+    canActivate: [AutorizacaoGuard],
     children: [
       {
         path: '',

@@ -61,11 +61,11 @@ export class LoginComponent {
       email: this.form.controls['cadastroEmail'].value,
       senha: this.form.controls['cadastroSenha'].value      
     }
-    this.retornoCadastro = this.localStorage.cadastro(formsCadastro)
+    this.retornoCadastro = this.localStorage.cadastroUsuario(formsCadastro)
   }
 
   loginForm() {
-    let resultadoLogin = this.localStorage.login(this.emailLogin, this.senhaLogin)
+    let resultadoLogin = this.localStorage.loginUsuario(this.emailLogin, this.senhaLogin)
 
     if ( typeof resultadoLogin !== 'undefined') {
       this.localStorage.usuarioLogado(resultadoLogin)
