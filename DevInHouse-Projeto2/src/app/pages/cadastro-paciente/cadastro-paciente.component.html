@@ -1,18 +1,18 @@
 
 <div class="mainContainer m-4">
-    <form  class="d-flex flex-column p-4 " [formGroup]="formCadastroPaciente" >
+    <form  class="d-flex flex-column p-4 " [formGroup]="formCadastroPaciente" (ngSubmit)="cadastroPaciente()">
         <div class="d-flex justify-content-between ">
             <h2>Identificação</h2>
             <div class="">
                 <button>Editar</button>
                 <button>Deletar</button>
-                <button>Cancelar</button>
+                <button type="submit" value="submit" [disabled]="formCadastroPaciente.invalid">Salvar</button>
             </div>
         </div>
 
         <div class="d-flex flex-wrap justify-content-between">
             <div class="d-flex flex-column custom">
-                <label class="form-label" for="nomeCompleto">Nome Completo</label>
+                <label class="form-label" for="nomeCompleto">Nome Completo*</label>
                 <input class="form-control mb-2" type="text" formControlName="nomeCompleto">
             </div>
 
@@ -25,22 +25,22 @@
             </div>
 
             <div class="d-flex flex-column pequeno">
-                <label class="form-label" for="dataNascimento">Data de Nascimento</label>
+                <label class="form-label" for="dataNascimento">Data de Nascimento*</label>
                 <input class="form-control mb-2" type="date" formControlName="dataNascimento">
             </div>
 
             <div class="d-flex flex-column medio">
-                <label class="form-label" for="cpf">CPF</label>
+                <label class="form-label" for="cpf">CPF*</label>
                 <input class="form-control mb-2" type="text" formControlName="cpf">
             </div>
 
             <div class="d-flex flex-column medio">
-                <label class="form-label" for="rg">RG</label>
+                <label class="form-label" for="rg">RG*</label>
                 <input class="form-control mb-2" type="text" formControlName="rg">
             </div>
 
             <div class="d-flex flex-column medio">
-                <label class="form-label" for="estadoCivil">Estado Civil</label>
+                <label class="form-label" for="estadoCivil">Estado Civil*</label>
                 <select class="form-select mb-1" formControlName="estadoCivil">
                     <option value="masculino">Solteiro(a)</option>
                     <option value="feminino">Casado(a)</option>
@@ -50,18 +50,33 @@
             </div>
 
             <div class="d-flex flex-column medio">
-                <label class="form-label" for="telefone">Telefone</label>
+                <label class="form-label" for="telefone">Telefone*</label>
                 <input class="form-control mb-2" type="text" formControlName="telefone">
             </div>
 
             <div class="d-flex flex-column medio">
-                <label class="form-label" for="email">E-mail</label>
+                <label class="form-label" for="email">E-mail*</label>
                 <input class="form-control mb-2" type="email" formControlName="email">
             </div>
 
             <div class="d-flex flex-column medio">
-                <label class="form-label" for="naturalidade">Naturalidade</label>
+                <label class="form-label" for="naturalidade">Naturalidade*</label>
                 <input class="form-control mb-2" type="text" formControlName="naturalidade">
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="contatoEmergencia">Contato de Emergência*</label>
+                <input class="form-control mb-2" type="text" formControlName="contatoEmergencia">
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="listaAlergia">Lista de Alergias</label>
+                <input class="form-control mb-2" type="text" formControlName="listaAlergia">
+            </div>
+
+            <div class="d-flex flex-column medio">
+                <label class="form-label" for="listaCuidados">Lista de Cuidados Específicos</label>
+                <input class="form-control mb-2" type="text" formControlName="listaCuidados">
             </div>
 
 
@@ -71,15 +86,15 @@
 
             <div class="d-flex flex-column medio">
                 <label class="form-label" for="convenio">Convênio</label>
-                <input class="form-control mb-2" type="email" formControlName="convenio">
+                <input class="form-control mb-2" type="text" formControlName="convenio">
             </div>
 
             <div class="d-flex flex-column medio">
-                <label class="form-label" for="numeroCateira">Número da Carteira</label>
-                <input class="form-control mb-2" type="text" formControlName="numeroCateira">
+                <label class="form-label" for="numeroCarteira">Número da Carteira</label>
+                <input class="form-control mb-2" type="text" formControlName="numeroCarteira">
             </div>
 
-            <div class="d-flex flex-column medio    ">
+            <div class="d-flex flex-column medio">
                 <label class="form-label" for="validade">Validade</label>
                 <input class="form-control mb-2" type="date" formControlName="validade">
             </div>
@@ -89,27 +104,27 @@
             </div>
             
             <div class="d-flex flex-column medio">
-                <label class="form-label" for="cep">CEP</label>
-                <input class="form-control mb-2" type="text" formControlName="cep">
+                <label class="form-label" for="cep">CEP*</label>
+                <input class="form-control mb-2" type="number" formControlName="cep" (blur)="consultaCEP()" >
             </div>
 
             <div class="d-flex flex-column custom">
-                <label class="form-label" for="cidade">Cidade</label>
-                <input class="form-control mb-2" type="text" formControlName="cidade">
+                <label class="form-label" for="cidade">Cidade*</label>
+                <input class="form-control mb-2" type="text" formControlName="cidade" [value]="cidade">
             </div>
 
             <div class="d-flex flex-column pequeno">
-                <label class="form-label" for="estado">Estado</label>
-                <input class="form-control mb-2" type="text" formControlName="estado">
+                <label class="form-label" for="estado">Estado*</label>
+                <input class="form-control mb-2" type="text" formControlName="estado" [value]="estado">
             </div>
 
             <div class="d-flex flex-column grande">
-                <label class="form-label" for="logradouro">Logradouro</label>
-                <input class="form-control mb-2" type="text" formControlName="logradouro">
+                <label class="form-label" for="logradouro">Logradouro*</label>
+                <input class="form-control mb-2" type="text" formControlName="logradouro" [value]="logradouro">
             </div>
 
             <div class="d-flex flex-column pequeno">
-                <label class="form-label" for="numero">Número</label>
+                <label class="form-label" for="numero">Número*</label>
                 <input class="form-control mb-2" type="number" formControlName="numero">
             </div>
 
@@ -119,8 +134,8 @@
             </div>
 
             <div class="d-flex flex-column medio">
-                <label class="form-label" for="bairro">Bairro</label>
-                <input class="form-control mb-2" type="text" formControlName="bairro">  
+                <label class="form-label" for="bairro">Bairro*</label>
+                <input class="form-control mb-2" type="text" formControlName="bairro" [value]="bairro">  
             </div>
 
             <div class="d-flex flex-column medio">
