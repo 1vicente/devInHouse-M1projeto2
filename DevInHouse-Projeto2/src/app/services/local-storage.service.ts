@@ -65,4 +65,27 @@ export class LocalStorageService {
     localStorage.setItem('Pacientes', JSON.stringify(this.localStoragePacientes))
     return "cadastrado"
   }
+
+  estatisticasSistema (){
+
+    let storages = ['Pacientes']
+    let storagesTemp;
+    let controle = []
+    storages.forEach(x => {
+      storagesTemp = localStorage.getItem(x)
+      storagesTemp = JSON.parse(storagesTemp)
+      storagesTemp = storagesTemp.length
+      console.log(x,storagesTemp)
+
+      controle.push(storagesTemp)      
+    })
+    return controle
+  }
+
+  retornaPacientes() {
+    let localstorage = localStorage.getItem('Pacientes')
+    localstorage = JSON.parse(localstorage)
+
+    return localstorage
+  }
 }

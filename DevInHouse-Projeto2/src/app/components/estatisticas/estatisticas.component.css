@@ -5,7 +5,9 @@
 }
 
 .cardNumero {
-    font-size: 72px;
+    font-size: 62px;
+    padding: 0px;
+    margin: 0px;
 }
 
 .categoria{
