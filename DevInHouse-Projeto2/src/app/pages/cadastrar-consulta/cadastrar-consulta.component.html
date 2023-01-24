@@ -1,0 +1,52 @@
+
+<div class="m-4">
+    <div class="mb-4">
+        <h1>Encontre o Paciente</h1>
+        <input class="form-control" type="text">
+
+    </div>
+
+    <form  class="d-flex flex-column p-4 mainContainer " [formGroup]="formCadastroConsulta" (ngSubmit)="cadastroConsulta()" >
+
+        <div class="d-flex justify-content-between">
+            <h2>Consulta de [Paciente] </h2>
+            <div class="">
+                <button [disabled]="editarCadastro" >Editar</button>
+                <button [disabled]="editarCadastro" >Deletar</button>
+                <button type="submit" value="submit" [disabled]="formCadastroConsulta.invalid">Salvar</button>
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-between">
+            <div class="d-flex flex-column grande">
+                <label class="form-label" for="nomeCompleto">Motivo da Consulta*</label>
+                <input class="form-control mb-2" type="text" formControlName="motivoConsulta">
+            </div>
+
+            <div class="d-flex flex-column pequeno">
+                <label class="form-label" for="nomeCompleto">Data da Consulta*</label>
+                <input class="form-control mb-2" type="date" formControlName="dataConsulta" [ngModel]="data">
+            </div>
+
+            <div class="d-flex flex-column pequeno">
+                <label class="form-label" for="nomeCompleto">Hora da Consulta*</label>
+                <input class="form-control mb-2" type="text" formControlName="horaConsulta">
+            </div>
+
+            <div class="d-flex flex-column custom">
+                <label class="form-label" for="nomeCompleto">Descrição do Problema*</label>
+                <textarea class="form-control mb-2" type="text" formControlName="descricaoProblema" rows="9" cols="50"> </textarea>
+            </div>
+
+            <div class="d-flex flex-column custom">
+                <label class="form-label" for="nomeCompleto">Medicação Receitada*</label>
+                <textarea class="form-control mb-2" type="text" formControlName="medicacaoReceitada" rows="3" cols="50" > </textarea>
+            </div>
+
+            <div class="d-flex flex-column custom">
+                <label class="form-label" for="nomeCompleto">Dosagem e Precauções*</label>
+                <textarea class="form-control mb-2" type="text" formControlName="dosagemPrecaucoes" rows="3" cols="50"> </textarea>
+            </div>
+        </div>
+    </form>
+</div>

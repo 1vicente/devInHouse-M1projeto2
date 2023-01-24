@@ -1,22 +1,23 @@
 <div class="m-4" >
-   <h1>
+    <h1>
         Informações Rápidas de Paciêntes
     </h1>
 
-    <input type="text">
+    <input class="form-control" type="text" placeholder="Pesquise um paciente pelo nome" (keyup)="atualizaCards()" [(ngModel)]="entradaFiltro">
 </div>
 
-<div>
-    <ul class="navbar-nav cardPacientes m-4">
+<div class="d-flex flex-wrap">
+    <ul *ngFor="let item of infoPacientesFiltrados" class="navbar-nav cardPacientes m-4">
         <li>
             <div class="d-flex flex-column align-items-center p-4">
                 <img class="mb-4" src="../../../assets/img/perfil-de-usuario.png" width="92" height="92" alt="">
-                <h2>Nome</h2>
-                <p>Idade</p>
-                <h3>Telefone</h3>
-                <h3>Plano</h3>
+                <h2>{{ item.paciente["nome"] }}</h2>
+                <p>{{ item.paciente["dataNascimento"] | age }} anos</p>
+                <h3>{{ item.paciente["telefone"] }}</h3>
+                <h3>{{ item.convenio["convenio"] == '' ? 'Sem convênio' : item.convenio["convenio"] | titlecase }}</h3>
                 <p>Ver mais</p>
             </div>
         </li>
     </ul>
+
 </div>

@@ -5,19 +5,32 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
 
+  localStorageUsuarios: any;
+
+  localStoragePacientes: any;
+
+  localStorageConsulta: any;
+
   constructor() { }
 
-  cadastro(x: any ){
 
-    let localStorageUsuarios = localStorage.getItem('Usuarios')
-    let localStorageUsuariosTemp = JSON.parse(localStorageUsuarios)
-    localStorageUsuariosTemp.push(x)
+  cadastroUsuario(x: any ){
 
-    localStorage.setItem('Usuarios', JSON.stringify(localStorageUsuariosTemp))
+   this.localStorageUsuarios = localStorage.getItem('Usuarios')
+       
+
+    if (this.localStorageUsuarios == null) {
+      this.localStorageUsuarios = []
+    } else {
+      this.localStorageUsuarios = JSON.parse(this.localStorageUsuarios)
+    }
+    this.localStorageUsuarios.push(x)
+    localStorage.setItem('Usuarios', JSON.stringify(this.localStorageUsuarios))
+        
     return "cadastrado"
   }
 
-  login(emailLogin: string, senhaLogin: string){
+  loginUsuario(emailLogin: string, senhaLogin: string){
     let localStorageUsuarios = localStorage.getItem('Usuarios')
     let localStorageUsuariosTemp = JSON.parse(localStorageUsuarios)
 
@@ -26,7 +39,6 @@ export class LocalStorageService {
     }
 
   usuarioLogado(usuario: any) {
-    console.log(usuario)
     localStorage.setItem('usuarioLogado', JSON.stringify(usuario))
   }
   
@@ -36,13 +48,62 @@ export class LocalStorageService {
     return localStorageUsuariosTemp
   }
 
-  cadastraPaciente(paciente: any) {
-    let localStorageUsuarios = localStorage.getItem('Pacientes')
-    console.log(localStorageUsuarios)
-    let localStorageUsuariosTemp = JSON.parse(localStorageUsuarios)
-    localStorageUsuariosTemp.push(paciente)
+  deslogarUsuario () {
+    localStorage.removeItem('usuarioLogado')
+  }
 
-    localStorage.setItem('Pacientes', JSON.stringify(localStorageUsuariosTemp))
+  cadastraPaciente(paciente: any) {
+
+    this.localStoragePacientes = localStorage.getItem('Pacientes')
+
+    if (this.localStoragePacientes == null) {
+      this.localStoragePacientes = []
+    } else {
+      this.localStoragePacientes = JSON.parse(this.localStoragePacientes)
+    }
+    
+    this.localStoragePacientes.push(paciente)
+
+    localStorage.setItem('Pacientes', JSON.stringify(this.localStoragePacientes))
     return "cadastrado"
+  }
+
+  cadastraConsulta (consulta:any) {
+
+    this.localStorageConsulta = localStorage.getItem('Consultas')
+
+    if (this.localStorageConsulta == null) {
+      this.localStorageConsulta = []
+    } else {
+      this.localStorageConsulta = JSON.parse(this.localStorageConsulta)
+    }
+    
+    this.localStorageConsulta.push(consulta)
+
+    localStorage.setItem('Consultas', JSON.stringify(this.localStorageConsulta))
+    return "cadastrado"
+  }
+
+  estatisticasSistema (){
+
+    let storages = ['Pacientes','Consultas','Exames']
+    let storagesTemp;
+    let controle = []
+    storages.forEach(x => {
+      storagesTemp = localStorage.getItem(x)
+      storagesTemp = JSON.parse(storagesTemp)
+      storagesTemp = storagesTemp.length
+      console.log(x,storagesTemp)
+
+      controle.push(storagesTemp)      
+    })
+    return controle
+  }
+
+  retornaPacientes() {
+    let localstorage = localStorage.getItem('Pacientes')
+    localstorage = JSON.parse(localstorage)
+
+    return localstorage
   }
 }
