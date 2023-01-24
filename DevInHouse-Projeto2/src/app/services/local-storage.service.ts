@@ -70,7 +70,7 @@ export class LocalStorageService {
 
   cadastraConsulta (consulta:any) {
 
-    this.localStorageConsulta = localStorage.getItem('Consulta')
+    this.localStorageConsulta = localStorage.getItem('Consultas')
 
     if (this.localStorageConsulta == null) {
       this.localStorageConsulta = []
@@ -80,13 +80,13 @@ export class LocalStorageService {
     
     this.localStorageConsulta.push(consulta)
 
-    localStorage.setItem('Consulta', JSON.stringify(this.localStorageConsulta))
+    localStorage.setItem('Consultas', JSON.stringify(this.localStorageConsulta))
     return "cadastrado"
   }
 
   estatisticasSistema (){
 
-    let storages = ['Pacientes']
+    let storages = ['Pacientes','Consultas','Exames']
     let storagesTemp;
     let controle = []
     storages.forEach(x => {
