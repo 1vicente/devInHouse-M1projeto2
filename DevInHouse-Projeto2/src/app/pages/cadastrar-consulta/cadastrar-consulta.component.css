@@ -1,0 +1,17 @@
+.mainContainer {
+    background-color: white;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.35);
+    border-radius: 4px;
+}
+
+.pequeno {
+    width: 10%;
+}
+
+.grande {
+    width: 78%;
+}
+
+.custom {
+    width: 100%;
+}

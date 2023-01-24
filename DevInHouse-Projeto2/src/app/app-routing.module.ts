@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AutorizacaoGuard } from './guard/autorizacao.guard';
 import { AreaLogadaComponent } from './pages/area-logada/area-logada.component';
+import { CadastrarConsultaComponent } from './pages/cadastrar-consulta/cadastrar-consulta.component';
 import { CadastroPacienteComponent } from './pages/cadastro-paciente/cadastro-paciente.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { ListaProntuariosComponent } from './pages/lista-prontuarios/lista-prontuarios.component';
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'cadastar-paciente',
         component: CadastroPacienteComponent
+      },
+      {
+        path: 'cadastar-consulta',
+        component: CadastrarConsultaComponent
       },
     ]
   },  

@@ -15,6 +15,7 @@ import { ListaProntuariosComponent } from './pages/lista-prontuarios/lista-pront
 import { AreaLogadaComponent } from './pages/area-logada/area-logada.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AgePipe } from './pipes/age.pipe';
+import { CadastrarConsultaComponent } from './pages/cadastrar-consulta/cadastrar-consulta.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AgePipe } from './pipes/age.pipe';
     CadastroPacienteComponent,
     ListaProntuariosComponent,
     AreaLogadaComponent,
-    AgePipe
+    AgePipe,
+    CadastrarConsultaComponent
   ],
   imports: [
     BrowserModule,
