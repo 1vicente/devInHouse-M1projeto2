@@ -11,6 +11,7 @@ export class CadastrarConsultaComponent implements OnInit {
 
   retornoCadastro: any;
   data:any;
+  editarCadastro: boolean = true;
 
   formCadastroConsulta = this.fb.group({
     motivoConsulta: ['', {
