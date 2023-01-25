@@ -175,7 +175,7 @@ export class CadastroPacienteComponent {
   cadastroPaciente() {
     let CadastroPaciente = {
       paciente: {
-        id: Math.floor(Math.random() * 1000),
+        id: Date.now(),
         nome: this.formCadastroPaciente.controls['nomeCompleto'].value,
         genero: this.formCadastroPaciente.controls['genero'].value,
         dataNascimento: this.formCadastroPaciente.controls['dataNascimento'].value,

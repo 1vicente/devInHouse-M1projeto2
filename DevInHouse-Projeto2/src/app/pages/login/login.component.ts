@@ -56,7 +56,7 @@ export class LoginComponent {
 
   cadastroForm() {
     let formsCadastro = {
-      id: Math.floor(Math.random() * 1000),
+      id: Date.now(),
       nome: this.form.controls['cadastroNome'].value,
       email: this.form.controls['cadastroEmail'].value,
       senha: this.form.controls['cadastroSenha'].value      

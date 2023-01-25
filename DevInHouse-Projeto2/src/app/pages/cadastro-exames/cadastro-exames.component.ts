@@ -95,7 +95,7 @@ export class CadastroExamesComponent {
 
   let CadastroExames = {
       idPaciente: this.infoPacientesFiltrados[0].paciente["id"],
-      idExame: Math.floor(Math.random() * 1000),
+      idExame: Date.now(),
       nomeExame: this.formCadastroExames.controls['nomeExame'].value,
       dataExame: this.formCadastroExames.controls['dataExame'].value,
       horaExame: this.formCadastroExames.controls['horaExame'].value,
