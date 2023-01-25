@@ -11,6 +11,8 @@ export class LocalStorageService {
 
   localStorageConsulta: any;
 
+  localStorageExames: any;
+
   constructor() { }
 
 
@@ -81,6 +83,22 @@ export class LocalStorageService {
     this.localStorageConsulta.push(consulta)
 
     localStorage.setItem('Consultas', JSON.stringify(this.localStorageConsulta))
+    return "cadastrado"
+  }
+
+  cadastraExames (exames:any) {
+
+    this.localStorageExames = localStorage.getItem('Exames')
+
+    if (this.localStorageExames == null) {
+      this.localStorageExames = []
+    } else {
+      this.localStorageExames = JSON.parse(this.localStorageExames)
+    }
+    
+    this.localStorageExames.push(exames)
+
+    localStorage.setItem('Exames', JSON.stringify(this.localStorageExames))
     return "cadastrado"
   }
 
