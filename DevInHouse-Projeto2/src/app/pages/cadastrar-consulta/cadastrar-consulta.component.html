@@ -11,7 +11,7 @@
 
     </div>
 
-    <form  class="d-flex flex-column p-4 mainContainer " [formGroup]="formCadastroConsulta" (ngSubmit)="cadastroConsulta()" >
+    <form  class="d-flex flex-column p-4 mainContainer scroll-container" [formGroup]="formCadastroConsulta" (ngSubmit)="cadastroConsulta()" >
 
         <div class="d-flex justify-content-between">
             <h2>Consulta de  {{ digitado == null ? "[Paciente]" : digitado }} </h2>
