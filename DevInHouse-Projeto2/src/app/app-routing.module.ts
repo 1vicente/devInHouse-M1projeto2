@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AutorizacaoGuard } from './guard/autorizacao.guard';
 import { AreaLogadaComponent } from './pages/area-logada/area-logada.component';
 import { CadastrarConsultaComponent } from './pages/cadastrar-consulta/cadastrar-consulta.component';
+import { CadastroExamesComponent } from './pages/cadastro-exames/cadastro-exames.component';
 import { CadastroPacienteComponent } from './pages/cadastro-paciente/cadastro-paciente.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { ListaProntuariosComponent } from './pages/lista-prontuarios/lista-prontuarios.component';
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'cadastar-consulta',
         component: CadastrarConsultaComponent
+      },
+      {
+        path: 'cadastar-exames',
+        component: CadastroExamesComponent
       },
     ]
   },  
