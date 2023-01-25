@@ -84,7 +84,7 @@ export class CadastrarConsultaComponent implements OnInit {
   cadastroConsulta () {
   let CadastroConsulta = {
       idPaciente: this.infoPacientesFiltrados[0].paciente["id"],
-      idConsulta: Math.floor(Math.random() * 1000),
+      idConsulta: Date.now(),
       motivoConsulta: this.formCadastroConsulta.controls['motivoConsulta'].value,
       dataConsulta: this.formCadastroConsulta.controls['dataConsulta'].value,
       horaConsulta: this.formCadastroConsulta.controls['horaConsulta'].value,
