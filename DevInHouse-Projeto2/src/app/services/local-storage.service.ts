@@ -124,4 +124,18 @@ export class LocalStorageService {
 
     return localstorage
   }
+
+  retornaExames () {
+    let localstorage = localStorage.getItem('Exames')
+    localstorage = JSON.parse(localstorage)
+
+    return localstorage
+  }
+
+  retornaConsultas () {
+    let localstorage = localStorage.getItem('Consultas')
+    localstorage = JSON.parse(localstorage)
+
+    return localstorage
+  }
 }

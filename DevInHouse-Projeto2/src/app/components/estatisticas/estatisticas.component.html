@@ -4,9 +4,9 @@
 <div class="d-flex d-flex justify-content-evenly mt-4">
     <ul class="navbar-nav cards">
         <li class="card d-flex flex-column justify-content-center">
-            <div class="d-flex flex-row justify-content-center gap-4 mb-2">
-                <img src="../../../assets/img/multiple-users-silhouette.png">
-                <p class="cardNumero">{{ contadorPacientes }}</p>
+            <div class="d-flex flex-row justify-content-center align-items-center gap-4 mb-2">
+                <img class="icone" src="../../../assets/img/multiple-users-silhouette.png">
+                <p class="cardNumero">{{ contadorPacientes == null ? "0" : contadorPacientes }}</p>
             </div>
             <p class="text-center categoria m-0">Pacientes</p>
         </li>
@@ -14,9 +14,9 @@
 
     <ul class="navbar-nav cards">
         <li class="card d-flex flex-column justify-content-center">
-            <div class="d-flex flex-row justify-content-center gap-4 mb-2">
-                <img src="../../../assets/img/consulta-medica.png">
-                <p class="cardNumero">{{ contadorConsultas }}</p>
+            <div class="d-flex flex-row justify-content-center align-items-center gap-4 mb-2">
+                <img class="icone" src="../../../assets/img/consulta-medica.png">
+                <p class="cardNumero">{{ contadorConsultas == null ? "0" : contadorConsultas }}</p>
             </div>
             <p class="text-center categoria m-0">Consultas</p>
         </li>
@@ -24,9 +24,9 @@
 
     <ul class="navbar-nav cards">
         <li class="card d-flex flex-column justify-content-center">
-            <div class="d-flex flex-row justify-content-center gap-4 mb-2">
-                <img src="../../../assets/img/exame-de-saude.png">
-                <p class="cardNumero">{{ contadorExames }}</p>
+            <div class="d-flex flex-row justify-content-center align-items-center gap-4 mb-2">
+                <img class="icone" src="../../../assets/img/exame-de-saude.png">
+                <p class="cardNumero">{{ contadorExames == null ? "0" : contadorExames}}</p>
             </div>
             <p class="text-center categoria m-0">Exames</p>
         </li>

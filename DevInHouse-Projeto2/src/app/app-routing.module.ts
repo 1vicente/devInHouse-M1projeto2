@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ChildrenOutletContexts, RouterModule, Routes } from '@angular/router';
 import { AutorizacaoGuard } from './guard/autorizacao.guard';
 import { AreaLogadaComponent } from './pages/area-logada/area-logada.component';
 import { CadastrarConsultaComponent } from './pages/cadastrar-consulta/cadastrar-consulta.component';
@@ -8,6 +8,7 @@ import { CadastroPacienteComponent } from './pages/cadastro-paciente/cadastro-pa
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { ListaProntuariosComponent } from './pages/lista-prontuarios/lista-prontuarios.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ProntuarioDetalheComponent } from './pages/prontuario-detalhe/prontuario-detalhe.component';
 
 const routes: Routes = [
   { path: '', 
@@ -30,6 +31,14 @@ const routes: Routes = [
       {
         path: 'prontuarios',
         component: ListaProntuariosComponent
+      },
+      {
+        path: 'detalhe-prontuario',
+        component: ProntuarioDetalheComponent,
+      },
+      {      
+        path: 'detalhe-prontuario/:id',
+        component: ProntuarioDetalheComponent,
       },
       {
         path: 'cadastar-paciente',

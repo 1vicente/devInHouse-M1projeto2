@@ -4,7 +4,7 @@
         <h1>Encontre o Paciente</h1>
 
         <label for="exampleDataList" class="form-label"></label>
-        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Pesquise 12312 paciente..." [(ngModel)]="digitado" (keyup)="atualizaCards()">
+        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Pesquise o paciente..." [(ngModel)]="digitado" (keyup)="atualizaCards()">
         <datalist id="datalistOptions">
           <option *ngFor="let item of infoPacientesFiltrados" value="{{ item.paciente['nome']}}"> {{ item.paciente['id']}} </option> 
         </datalist>
