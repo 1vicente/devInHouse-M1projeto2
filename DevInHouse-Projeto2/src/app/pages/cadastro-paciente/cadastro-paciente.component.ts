@@ -201,10 +201,7 @@ export class CadastroPacienteComponent {
         complemento: this.formCadastroPaciente.controls['complemento'].value,
         bairro: this.formCadastroPaciente.controls['bairro'].value,
         pontoReferencia: this.formCadastroPaciente.controls['pontoReferencia'].value,
-      },
-      exames: [],
-      consultas: []
-
+      }
     }
 
     this.retornoCadastro = this.localStorage.cadastraPaciente(CadastroPaciente)
