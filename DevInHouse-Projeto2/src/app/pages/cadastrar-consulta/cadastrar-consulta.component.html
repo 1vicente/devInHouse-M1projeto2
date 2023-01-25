@@ -2,14 +2,19 @@
 <div class="m-4">
     <div class="mb-4">
         <h1>Encontre o Paciente</h1>
-        <input class="form-control" type="text">
+
+        <label for="exampleDataList" class="form-label"></label>
+        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Pesquise o paciente..." [(ngModel)]="digitado" (keyup)="atualizaCards()">
+        <datalist id="datalistOptions">
+          <option *ngFor="let item of infoPacientesFiltrados" value="{{ item.paciente['nome']}}"> {{ item.paciente['id']}} </option> 
+        </datalist>
 
     </div>
 
     <form  class="d-flex flex-column p-4 mainContainer " [formGroup]="formCadastroConsulta" (ngSubmit)="cadastroConsulta()" >
 
         <div class="d-flex justify-content-between">
-            <h2>Consulta de [Paciente] </h2>
+            <h2>Consulta de  {{ digitado == null ? "[Paciente]" : digitado }} </h2>
             <div class="">
                 <button [disabled]="editarCadastro" >Editar</button>
                 <button [disabled]="editarCadastro" >Deletar</button>
