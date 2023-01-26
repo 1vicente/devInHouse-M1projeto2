@@ -70,6 +70,25 @@ export class LocalStorageService {
     return "cadastrado"
   }
 
+  editaPacientes(paciente:any,idpaciente:any) {
+    this.localStoragePacientes = localStorage.getItem('Pacientes')
+    this.localStoragePacientes = JSON.parse(this.localStoragePacientes)
+    
+    let pacienteTemp = this.localStoragePacientes.filter((pacienteFiltro: any) =>{ return pacienteFiltro.paciente['id'] != idpaciente })
+    pacienteTemp.push(paciente)
+
+    localStorage.setItem('Pacientes', JSON.stringify(pacienteTemp))
+    return "Paciente Editado"
+  }
+
+  removerPacientes (idpaciente: any) {
+    this.localStoragePacientes = localStorage.getItem('Pacientes')
+    this.localStoragePacientes = JSON.parse(this.localStoragePacientes)
+    let pacienteTemp = this.localStoragePacientes.filter((pacienteFiltro: any) =>{ return pacienteFiltro.paciente['id'] != idpaciente })
+    localStorage.setItem('Pacientes', JSON.stringify(pacienteTemp))
+    return "Paciente Removido"
+  }
+
   cadastraConsulta (consulta:any) {
 
     this.localStorageConsulta = localStorage.getItem('Consultas')
@@ -111,8 +130,6 @@ export class LocalStorageService {
       storagesTemp = localStorage.getItem(x)
       storagesTemp = JSON.parse(storagesTemp)
       storagesTemp = storagesTemp.length
-      console.log(x,storagesTemp)
-
       controle.push(storagesTemp)      
     })
     return controle

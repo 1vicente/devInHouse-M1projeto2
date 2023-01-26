@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from  '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map } from 'rxjs';
+import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 
 
 @Injectable({
@@ -8,24 +9,18 @@ import { map, Observable } from 'rxjs';
 })
 export class ViacepService {
 
-  retorno = [];
-
   constructor(private http: HttpClient) { }
 
   consultaCep(cep: any) {
 
-    this.http.get(`https://viacep.com.br/ws/${cep}/json/`).pipe(map((response:any) => ({
+    let retorno = this.http.get(`https://viacep.com.br/ws/${cep}/json/`).pipe(map((response:any) => ({
     cep: response.cep,
     logradouro: response.logradouro,
     bairro: response.bairro,
     cidade: response.localidade,
     estado: response.uf
-    }))).subscribe((data) => {
-      this.retorno.push(data)
-      })
+    }))).toPromise()
 
-    return this.retorno
-
+    return retorno
    }
-  
 }
