@@ -283,16 +283,26 @@ export class CadastroPacienteComponent implements OnInit{
   }
 
   removerPaciente() {
-    this.localStorage.removerPacientes(this.idPaciente)
+    let exames:any = this.localStorage.retornaExames()
+    exames = exames.filter((exame: any) =>{ return exame.idPaciente == this.formCadastroPaciente.controls['id'].value})
+
+    let consultas:any = this.localStorage.retornaConsultas()
+    consultas = consultas.filter((consulta: any) =>{ return consulta.idPaciente == this.formCadastroPaciente.controls['id'].value})
+
+    if (consultas.length == 0 && consultas.length == 0) {
+      this.localStorage.removerPacientes(this.idPaciente)
+    } else {
+      return console.log("O usuário tem exame e/ou consulta cadastrada")
+    }
   }
 
   async consultaCEP() {
        
     let retornoConsulta = await this.viacep.consultaCep(this.formCadastroPaciente.controls['cep'].value);
     
-    this.formCadastroPaciente.controls['cidade'].setValue(retornoConsulta?.cidade)
-    this.formCadastroPaciente.controls['bairro'].setValue(retornoConsulta?.bairro)
-    this.formCadastroPaciente.controls['estado'].setValue(retornoConsulta?.estado)
-    this.formCadastroPaciente.controls['logradouro'].setValue(retornoConsulta?.logradouro)  
+    this.formCadastroPaciente.controls['cidade'].setValue(retornoConsulta.cidade)
+    this.formCadastroPaciente.controls['bairro'].setValue(retornoConsulta.bairro)
+    this.formCadastroPaciente.controls['estado'].setValue(retornoConsulta.estado)
+    this.formCadastroPaciente.controls['logradouro'].setValue(retornoConsulta.logradouro)  
   }
 }
