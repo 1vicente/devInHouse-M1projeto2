@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
@@ -10,15 +11,23 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 export class CadastrarConsultaComponent implements OnInit {
 
   retornoCadastro: any;
-  data:any;
-  editarCadastro: boolean = true;
+  desabilitaEdicao: boolean = true;
 
   infoPacientes: any;
   infoPacientesFiltrados: any;
   digitado: any;
+  idUrl: any;
+  consultaFiltrado:any;
+  idConsulta:any;
+
 
   formCadastroConsulta = this.fb.group({
-    motivoConsulta: ['', {
+      id: ['', {
+        validators: [
+        ],
+        updateOn: 'blur'
+      }],
+      motivoConsulta: ['', {
           validators: [
              Validators.required,
              Validators.maxLength(64),
@@ -29,12 +38,6 @@ export class CadastrarConsultaComponent implements OnInit {
       dataConsulta: ['', {
           validators: [
              Validators.required
-          ],
-          updateOn: 'blur'
-      }],
-      horaConsulta: ['', {
-          validators: [
-             Validators.required,
           ],
           updateOn: 'blur'
       }],
@@ -61,16 +64,36 @@ export class CadastrarConsultaComponent implements OnInit {
       }]
     })
 
-  constructor(private fb:FormBuilder, private localStorage: LocalStorageService){}
+  constructor(private fb:FormBuilder, private localStorage: LocalStorageService, private route:ActivatedRoute){}
 
   ngOnInit(): void {
-    this.data = new Date()
 
     this.infoPacientes = this.localStorage.retornaPacientes()
     this.infoPacientesFiltrados = this.infoPacientes
+
+
+    this.idUrl = this.route.snapshot.params['id']
+    if (this.idUrl != undefined) {
+      this.desabilitaEdicao = false
+      let pacientes:any = this.localStorage.retornaConsultas()
+      
+      this.consultaFiltrado = pacientes.find((paciente: any) =>{ return paciente['id'] == this.idUrl })
+
+      this.idConsulta = this.consultaFiltrado['id']
+
+      let campoPacienteForm: any = ['id','motivoConsulta','dataConsulta','descricaoProblema','medicacaoReceitada','dosagemPrecaucoes']
+
+      campoPacienteForm.forEach((x:any ) => {
+        this.formCadastroConsulta.controls[x].setValue(this.consultaFiltrado[x])     })
+      
+      let paciente:any = this.infoPacientes.filter(paciente => { return paciente.paciente.id == this.consultaFiltrado.idPaciente})
+
+      this.digitado = paciente[0].paciente.nome
+      
+    }
   }
 
-  atualizaCards(){
+  filtraPaciente(){
     
     if (this.digitado == '') {
       this.infoPacientesFiltrados = this.infoPacientes
@@ -84,17 +107,31 @@ export class CadastrarConsultaComponent implements OnInit {
   cadastroConsulta () {
   let CadastroConsulta = {
       idPaciente: this.infoPacientesFiltrados[0].paciente["id"],
-      idConsulta: Date.now(),
+      id: Date.now(),
       motivoConsulta: this.formCadastroConsulta.controls['motivoConsulta'].value,
       dataConsulta: this.formCadastroConsulta.controls['dataConsulta'].value,
-      horaConsulta: this.formCadastroConsulta.controls['horaConsulta'].value,
       descricaoProblema: this.formCadastroConsulta.controls['descricaoProblema'].value,
       medicacaoReceitada: this.formCadastroConsulta.controls['medicacaoReceitada'].value,
       dosagemPrecaucoes: this.formCadastroConsulta.controls['dosagemPrecaucoes'].value
     }
   
   this.retornoCadastro = this.localStorage.cadastraConsulta(CadastroConsulta)
-  console.log(CadastroConsulta)
-  console.log(this.retornoCadastro)
+  }
+
+  editaConsulta(){
+    let editaConsulta = {
+      idPaciente: this.infoPacientesFiltrados[0].paciente["id"],
+      id: this.formCadastroConsulta.controls['id'].value,
+      motivoConsulta: this.formCadastroConsulta.controls['motivoConsulta'].value,
+      dataConsulta: this.formCadastroConsulta.controls['dataConsulta'].value,
+      descricaoProblema: this.formCadastroConsulta.controls['descricaoProblema'].value,
+      medicacaoReceitada: this.formCadastroConsulta.controls['medicacaoReceitada'].value,
+      dosagemPrecaucoes: this.formCadastroConsulta.controls['dosagemPrecaucoes'].value
+    }
+    this.retornoCadastro = this.localStorage.editaConsulta(editaConsulta, this.idConsulta)
+  }
+
+  removeConsulta() {
+    this.localStorage.removeConsulta(this.idConsulta)
   }
 }

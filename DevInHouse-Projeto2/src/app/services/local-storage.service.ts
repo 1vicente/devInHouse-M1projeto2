@@ -105,6 +105,26 @@ export class LocalStorageService {
     return "cadastrado"
   }
 
+  editaConsulta (consulta:any, idconsulta:any){
+
+    this.localStorageConsulta = localStorage.getItem('Consultas')
+    this.localStorageConsulta = JSON.parse(this.localStorageConsulta)
+    let consultasTemp = this.localStorageConsulta.filter((consultaFiltro: any) =>{ return consultaFiltro['id'] != idconsulta })
+
+    consultasTemp.push(consulta)
+    console.log(consultasTemp)
+    localStorage.setItem('Consultas', JSON.stringify(consultasTemp))
+    return "Consulta Editado"
+  }
+
+  removeConsulta (idconsulta: any){
+    this.localStorageConsulta = localStorage.getItem('Consultas')
+    this.localStorageConsulta = JSON.parse(this.localStorageConsulta)
+    let consultaTemp = this.localStorageConsulta.filter((consultaFiltro: any) =>{ return consultaFiltro['id'] != idconsulta })
+    localStorage.setItem('Consultas', JSON.stringify(consultaTemp))
+    return "Consulta Removida"
+  }
+
   cadastraExames (exames:any) {
 
     this.localStorageExames = localStorage.getItem('Exames')
