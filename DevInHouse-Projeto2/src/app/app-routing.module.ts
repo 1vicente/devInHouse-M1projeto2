@@ -53,6 +53,10 @@ const routes: Routes = [
         component: CadastrarConsultaComponent
       },
       {
+        path: 'cadastar-consulta/editar/:id',
+        component: CadastrarConsultaComponent
+      },
+      {
         path: 'cadastar-exames',
         component: CadastroExamesComponent
       },
