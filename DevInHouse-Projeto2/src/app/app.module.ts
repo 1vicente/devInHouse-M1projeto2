@@ -16,6 +16,8 @@ import { AreaLogadaComponent } from './pages/area-logada/area-logada.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AgePipe } from './pipes/age.pipe';
 import { CadastrarConsultaComponent } from './pages/cadastrar-consulta/cadastrar-consulta.component';
+import { CadastroExamesComponent } from './pages/cadastro-exames/cadastro-exames.component';
+import { ProntuarioDetalheComponent } from './pages/prontuario-detalhe/prontuario-detalhe.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CadastrarConsultaComponent } from './pages/cadastrar-consulta/cadastrar
     ListaProntuariosComponent,
     AreaLogadaComponent,
     AgePipe,
-    CadastrarConsultaComponent
+    CadastrarConsultaComponent,
+    CadastroExamesComponent,
+    ProntuarioDetalheComponent
   ],
   imports: [
     BrowserModule,

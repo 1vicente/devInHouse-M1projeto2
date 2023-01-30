@@ -2,22 +2,45 @@
 <div class="m-4">
     <div class="mb-4">
         <h1>Encontre o Paciente</h1>
-        <input class="form-control" type="text">
+
+        <label for="exampleDataList" class="form-label"></label>
+        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Pesquise o paciente..." [(ngModel)]="digitado" (keyup)="filtraPaciente()">
+        <datalist id="datalistOptions">
+          <option *ngFor="let item of infoPacientesFiltrados" value="{{ item.paciente['nome']}}"> {{ item.paciente['id']}} </option> 
+        </datalist>
 
     </div>
 
-    <form  class="d-flex flex-column p-4 mainContainer " [formGroup]="formCadastroConsulta" (ngSubmit)="cadastroConsulta()" >
+    <form  class="d-flex flex-column p-4 mainContainer scroll-container" [formGroup]="formCadastroConsulta" (ngSubmit)="cadastroConsulta()" >
 
         <div class="d-flex justify-content-between">
-            <h2>Consulta de [Paciente] </h2>
+            <h2>Consulta de  {{ digitado == null ? "[Paciente]" : digitado }} </h2>
             <div class="">
-                <button [disabled]="editarCadastro" >Editar</button>
-                <button [disabled]="editarCadastro" >Deletar</button>
-                <button type="submit" value="submit" [disabled]="formCadastroConsulta.invalid">Salvar</button>
+                <button class="btn btn-outline-secondary" [disabled]="desabilitaEdicao" type="button" (click)="editaConsulta()">
+                    <div *ngIf="loaderEditar == true" class="spinner-border tamanho" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                    Editar
+                </button>
+                <button class="btn btn-outline-danger" [disabled]="desabilitaEdicao" type="button" (click)="removeConsulta()" >
+                    <div *ngIf="loaderDeletar == true" class="spinner-border tamanho" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                    Deletar
+                </button>
+                <button type="submit" value="submit" class="btn btn-primary" [disabled]="formCadastroConsulta.invalid">
+                    <div *ngIf="loaderSalvar == true" class="spinner-border tamanho" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                    Salvar
+                </button>
             </div>
         </div>
 
         <div class="d-flex flex-wrap justify-content-between">
+
+            <input class="form-control mb-2" type="text" formControlName="id" hidden>
+
             <div class="d-flex flex-column grande">
                 <label class="form-label" for="nomeCompleto">Motivo da Consulta*</label>
                 <input class="form-control mb-2" type="text" formControlName="motivoConsulta">
@@ -25,12 +48,7 @@
 
             <div class="d-flex flex-column pequeno">
                 <label class="form-label" for="nomeCompleto">Data da Consulta*</label>
-                <input class="form-control mb-2" type="date" formControlName="dataConsulta" [ngModel]="data">
-            </div>
-
-            <div class="d-flex flex-column pequeno">
-                <label class="form-label" for="nomeCompleto">Hora da Consulta*</label>
-                <input class="form-control mb-2" type="text" formControlName="horaConsulta">
+                <input class="form-control mb-2" type="datetime-local" formControlName="dataConsulta" [ngModel]="data">
             </div>
 
             <div class="d-flex flex-column custom">

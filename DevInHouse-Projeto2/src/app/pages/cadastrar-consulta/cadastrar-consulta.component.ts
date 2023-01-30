@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
@@ -10,11 +11,27 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 export class CadastrarConsultaComponent implements OnInit {
 
   retornoCadastro: any;
-  data:any;
-  editarCadastro: boolean = true;
+  desabilitaEdicao: boolean = true;
+
+  infoPacientes: any;
+  infoPacientesFiltrados: any;
+  digitado: any;
+  idUrl: any;
+  consultaFiltrado:any;
+  idConsulta:any;
+  data: any;
+
+  loaderDeletar: boolean;
+  loaderEditar: boolean;
+  loaderSalvar: boolean;
 
   formCadastroConsulta = this.fb.group({
-    motivoConsulta: ['', {
+      id: ['', {
+        validators: [
+        ],
+        updateOn: 'blur'
+      }],
+      motivoConsulta: ['', {
           validators: [
              Validators.required,
              Validators.maxLength(64),
@@ -25,12 +42,6 @@ export class CadastrarConsultaComponent implements OnInit {
       dataConsulta: ['', {
           validators: [
              Validators.required
-          ],
-          updateOn: 'blur'
-      }],
-      horaConsulta: ['', {
-          validators: [
-             Validators.required,
           ],
           updateOn: 'blur'
       }],
@@ -57,26 +68,104 @@ export class CadastrarConsultaComponent implements OnInit {
       }]
     })
 
-  constructor(private fb:FormBuilder, private localStorage: LocalStorageService){}
+  constructor(private fb:FormBuilder, private localStorage: LocalStorageService, private route:ActivatedRoute, private router:Router){}
 
   ngOnInit(): void {
-    this.data = new Date()
-    console.log(this.data)
+
+    this.infoPacientes = this.localStorage.retornaPacientes()
+    this.infoPacientesFiltrados = this.infoPacientes
+
+
+    this.idUrl = this.route.snapshot.params['id']
+    if (this.idUrl != undefined) {
+      this.desabilitaEdicao = false
+      let consulta:any = this.localStorage.retornaConsultas()
+      
+      this.consultaFiltrado = consulta.find((paciente: any) =>{ return paciente['id'] == this.idUrl })
+
+      this.idConsulta = this.consultaFiltrado['id']
+
+      let campConsultaForm: any = ['id','motivoConsulta','dataConsulta','descricaoProblema','medicacaoReceitada','dosagemPrecaucoes']
+
+      campConsultaForm.forEach((x:any ) => {
+        this.formCadastroConsulta.controls[x].setValue(this.consultaFiltrado[x])     })
+      
+        this.data = this.consultaFiltrado.dataConsulta
+
+        console.log(this.data)
+
+      let paciente:any = this.infoPacientes.filter(paciente => { return paciente.paciente.id == this.consultaFiltrado.idPaciente})
+
+      this.digitado = paciente[0].paciente.nome
+      
+    }
+  }
+
+  filtraPaciente(){
+    
+    if (this.digitado == '') {
+      this.infoPacientesFiltrados = this.infoPacientes
+    } else {
+      this.infoPacientesFiltrados = this.infoPacientes.filter(pacienteFiltrado => {
+        return pacienteFiltrado.paciente["nome"].toLowerCase().includes(this.digitado.toLowerCase())
+      })
+    }
   }
 
   cadastroConsulta () {
   let CadastroConsulta = {
-      idConsulta: Math.floor(Math.random() * 1000),
+      idPaciente: this.infoPacientesFiltrados[0].paciente["id"],
+      id: Date.now(),
+      tipo: "consulta",
       motivoConsulta: this.formCadastroConsulta.controls['motivoConsulta'].value,
       dataConsulta: this.formCadastroConsulta.controls['dataConsulta'].value,
-      horaConsulta: this.formCadastroConsulta.controls['horaConsulta'].value,
       descricaoProblema: this.formCadastroConsulta.controls['descricaoProblema'].value,
       medicacaoReceitada: this.formCadastroConsulta.controls['medicacaoReceitada'].value,
       dosagemPrecaucoes: this.formCadastroConsulta.controls['dosagemPrecaucoes'].value
     }
   
   this.retornoCadastro = this.localStorage.cadastraConsulta(CadastroConsulta)
-  console.log(CadastroConsulta)
-  console.log(this.retornoCadastro)
+  if ( this.retornoCadastro == 'cadastrado') {
+    console.log("aqui",  this.retornoCadastro)
+    this.loaderSalvar=true
+    setTimeout(() => {
+      this.router.navigateByUrl('/arealogada')
+      }, 2000);
+   }
+
+  }
+
+  editaConsulta(){
+    let editaConsulta = {
+      idPaciente: this.infoPacientesFiltrados[0].paciente["id"],
+      id: this.formCadastroConsulta.controls['id'].value,
+      tipo: "consulta",
+      motivoConsulta: this.formCadastroConsulta.controls['motivoConsulta'].value,
+      dataConsulta: this.formCadastroConsulta.controls['dataConsulta'].value,
+      descricaoProblema: this.formCadastroConsulta.controls['descricaoProblema'].value,
+      medicacaoReceitada: this.formCadastroConsulta.controls['medicacaoReceitada'].value,
+      dosagemPrecaucoes: this.formCadastroConsulta.controls['dosagemPrecaucoes'].value
+    }
+    this.retornoCadastro = this.localStorage.editaConsulta(editaConsulta, this.idConsulta)
+
+    if ( this.retornoCadastro == 'Consulta Editado') {
+      console.log("aqui",  this.retornoCadastro)
+      this.loaderEditar=true
+      setTimeout(() => {
+        this.router.navigateByUrl('/arealogada')
+        }, 2000);
+     }
+  }
+
+  removeConsulta() {
+    this.retornoCadastro = this.localStorage.removeConsulta(this.idConsulta)
+    
+    if ( this.retornoCadastro == 'Consulta Removida') {
+      console.log("aqui",  this.retornoCadastro)
+      this.loaderEditar=true
+      setTimeout(() => {
+        this.router.navigateByUrl('/arealogada')
+        }, 2000);
+     }
   }
 }

@@ -1,0 +1,105 @@
+<div class="m-4">
+    <div>
+        <h1 class="m-2"><b>Paciente {{ pacientes.paciente['nome'] }} </b> (Emergência: {{ pacientes.paciente['contatoEmergencia'] }})</h1>
+        <h2>Convênio: {{ pacientes.convenio['convenio'] }} </h2>
+        <h2><b>Alergias</b>: {{ pacientes.paciente['listaAlergia'] }} -> <b>Lista de Cuidados</b>: {{ pacientes.paciente['listaCuidados'] }} </h2>
+    </div>
+    <hr>
+    <div class="scroll-container">
+        <div  *ngFor="let item of ordenado;let indexOfelement=index">
+            <div *ngIf="item.tipo == 'consulta'">
+                <div>
+                    <div class=" d-flex flex-row text-center align-items-center">
+                        <h1 class="debug m-0 box">{{ indexOfelement + 1 }}</h1>
+                        <h1 class=" m-0 ps-2">Consulta</h1>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-row">
+                    <div class="coluna d-flex flex-row justify-content-center">
+                        <div class="debug">
+
+                        </div>
+                    </div >
+                    <div class="d-flex flex-row cards mb-3 mt-2 w-100">
+                        <div class="p-3 informacoes">
+                            <div class="d-flex">
+                                <p><b>Motivo da Consulta</b></p> 
+                                <span class="ps-2"> {{ item.motivoConsulta}} </span>
+                            </div>
+                            <div class="d-flex">
+                                <p><b>Data da Consulta</b></p>
+                                <span class="ps-2">{{ item.dataConsulta}} - {{ item.horaConsulta}} </span>
+                            </div>
+                            <div class="d-flex">
+                                <p><b>Descrição do Problema</b></p>
+                                <span class="ps-2">{{ item.descricaoProblema}}</span>
+                            </div>
+                            <div class="d-flex">
+                                <p><b>Medicação Receitada</b></p>
+                                <span class="ps-2">{{ item.medicacaoReceitada}}</span>
+                            </div>
+                            <div class="d-flex">
+                                <p><b>Dosagem e Precauções</b></p>
+                                <span class="ps-2">{{ item.dosagemPrecaucoes}}</span>
+                            </div>
+                        </div>
+                        <div class="m-3">
+                            <button [routerLink]="['/arealogada/cadastar-consulta/editar', item.id]" class="btn btn-outline-secondary" >Editar</button>
+                        </div>    
+                    </div>    
+                </div>
+            </div>
+
+            <div *ngIf="item.tipo == 'exame'">
+                <div>
+                    <div class=" d-flex flex-row text-center align-items-center">
+                        <h1 class="debug m-0 box">{{ indexOfelement + 1 }}</h1>
+                        <h1 class=" m-0 ps-2">Exames</h1>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-row">
+                    <div class="coluna d-flex flex-row justify-content-center">
+                        <div class="debug">
+
+                        </div>
+                    </div >
+                    <div class="d-flex flex-row cards mb-3 mt-2 w-100">
+                        <div class="p-3 informacoes">
+                            <div class="d-flex">
+                                <p><b>Nome do Exame</b></p>
+                                <span class="ps-2">{{ item.nomeExame}}</span> 
+                            </div>
+                            <div class="d-flex">
+                                <p><b>Data do Exame</b></p>
+                                <span class="ps-2">{{ item.dataExame}} - {{ item.horaExame}} </span>
+                            </div>
+                            <div class="d-flex">
+                                <p><b>Tipo do Exame</b></p>
+                                <span class="ps-2">{{ item.tipoExame}}</span>
+                            </div>
+                            <div class="d-flex">
+                                <p><b>Laboratório</b></p>
+                                <span class="ps-2">{{ item.laboratorio}}</span>
+                            </div>
+                            <div class="d-flex">
+                                <p><b>Resultado do Exame</b></p>
+                                <span class="ps-2">{{ item.resultados}}</span>
+                            </div>
+                        </div>
+                        <div class="m-3 d-flex flex-column">
+                            <div class="d-flex justify-content-end">
+                                <button [routerLink]="['/arealogada/cadastar-exames/editar', item.id]" class="btn btn-outline-secondary">Editar</button>
+                            </div>
+                            <div class="d-flex flex-column align-items-center" *ngIf="item.urlExame != ''">
+                                <a class="mt-4" href="{{item.urlExame}}" target="_blank"> <img src="../../../assets/img/clips.png" alt=""></a>
+                                <p class="m-0">Clique para ver o exame</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

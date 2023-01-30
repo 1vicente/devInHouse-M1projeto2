@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Validators, FormBuilder  } from '@angular/forms';
 import { ValidaSenhaModule } from './modulos/valida-senha/valida-senha.module';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,6 +18,7 @@ export class LoginComponent {
  controleLogin:any;
 
  retornoCadastro:string;
+ loader:boolean;
 
  form = this.fb.group({
   cadastroNome: ['', {
@@ -52,16 +54,17 @@ export class LoginComponent {
     }
     );
 
- constructor(private fb: FormBuilder, private localStorage: LocalStorageService) {}
+ constructor(private fb: FormBuilder, private localStorage: LocalStorageService, private router:Router) {}
 
   cadastroForm() {
     let formsCadastro = {
-      id: Math.floor(Math.random() * 1000),
+      id: Date.now(),
       nome: this.form.controls['cadastroNome'].value,
       email: this.form.controls['cadastroEmail'].value,
       senha: this.form.controls['cadastroSenha'].value      
     }
     this.retornoCadastro = this.localStorage.cadastroUsuario(formsCadastro)
+    
   }
 
   loginForm() {
@@ -70,9 +73,12 @@ export class LoginComponent {
     if ( typeof resultadoLogin !== 'undefined') {
       this.localStorage.usuarioLogado(resultadoLogin)
       this.controleLogin = !!resultadoLogin
+      this.loader=true
+      setTimeout(() => {
+        this.router.navigateByUrl('/arealogada')
+      }, 2000); 
     } else {
       this.controleLogin = false
     }
   }
- 
 }

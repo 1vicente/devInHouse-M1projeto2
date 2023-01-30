@@ -11,6 +11,8 @@ export class LocalStorageService {
 
   localStorageConsulta: any;
 
+  localStorageExames: any;
+
   constructor() { }
 
 
@@ -68,6 +70,25 @@ export class LocalStorageService {
     return "cadastrado"
   }
 
+  editaPacientes(paciente:any,idpaciente:any) {
+    this.localStoragePacientes = localStorage.getItem('Pacientes')
+    this.localStoragePacientes = JSON.parse(this.localStoragePacientes)
+    
+    let pacienteTemp = this.localStoragePacientes.filter((pacienteFiltro: any) =>{ return pacienteFiltro.paciente['id'] != idpaciente })
+    pacienteTemp.push(paciente)
+
+    localStorage.setItem('Pacientes', JSON.stringify(pacienteTemp))
+    return "Paciente Editado"
+  }
+
+  removerPacientes (idpaciente: any) {
+    this.localStoragePacientes = localStorage.getItem('Pacientes')
+    this.localStoragePacientes = JSON.parse(this.localStoragePacientes)
+    let pacienteTemp = this.localStoragePacientes.filter((pacienteFiltro: any) =>{ return pacienteFiltro.paciente['id'] != idpaciente })
+    localStorage.setItem('Pacientes', JSON.stringify(pacienteTemp))
+    return "Paciente Removido"
+  }
+
   cadastraConsulta (consulta:any) {
 
     this.localStorageConsulta = localStorage.getItem('Consultas')
@@ -84,6 +105,64 @@ export class LocalStorageService {
     return "cadastrado"
   }
 
+  editaConsulta (consulta:any, idconsulta:any){
+
+    this.localStorageConsulta = localStorage.getItem('Consultas')
+    this.localStorageConsulta = JSON.parse(this.localStorageConsulta)
+    let consultasTemp = this.localStorageConsulta.filter((consultaFiltro: any) =>{ return consultaFiltro['id'] != idconsulta })
+
+    consultasTemp.push(consulta)
+    console.log(consultasTemp)
+    localStorage.setItem('Consultas', JSON.stringify(consultasTemp))
+    return "Consulta Editado"
+  }
+
+  removeConsulta (idconsulta: any){
+    this.localStorageConsulta = localStorage.getItem('Consultas')
+    this.localStorageConsulta = JSON.parse(this.localStorageConsulta)
+    let consultaTemp = this.localStorageConsulta.filter((consultaFiltro: any) =>{ return consultaFiltro['id'] != idconsulta })
+    localStorage.setItem('Consultas', JSON.stringify(consultaTemp))
+    return "Consulta Removida"
+  }
+
+  cadastraExames (exames:any) {
+
+    this.localStorageExames = localStorage.getItem('Exames')
+
+    if (this.localStorageExames == null) {
+      this.localStorageExames = []
+    } else {
+      this.localStorageExames = JSON.parse(this.localStorageExames)
+    }
+    
+    this.localStorageExames.push(exames)
+
+    localStorage.setItem('Exames', JSON.stringify(this.localStorageExames))
+    return "cadastrado"
+  }
+  
+  editaExame(exame:any, idexame:any){
+    this.localStorageExames = localStorage.getItem('Exames')
+    this.localStorageExames = JSON.parse(this.localStorageExames)
+    let examesTemp = this.localStorageExames.filter((exameFiltro: any) =>{ return exameFiltro['id'] != idexame })
+
+    examesTemp.push(exame)
+    console.log(examesTemp)
+    localStorage.setItem('Exames', JSON.stringify(examesTemp))
+    return "Exame Editado"
+  }
+
+  removeExame(idexame:any){
+    this.localStorageExames = localStorage.getItem('Exames')
+    this.localStorageExames = JSON.parse(this.localStorageExames)
+    let exameTemp = this.localStorageExames.filter((exameFiltro: any) =>{ return exameFiltro['id'] != idexame })
+    console.log(exameTemp)
+    localStorage.setItem('Exames', JSON.stringify(exameTemp))
+    return "Exame Removido"
+
+  }
+
+
   estatisticasSistema (){
 
     let storages = ['Pacientes','Consultas','Exames']
@@ -93,8 +172,6 @@ export class LocalStorageService {
       storagesTemp = localStorage.getItem(x)
       storagesTemp = JSON.parse(storagesTemp)
       storagesTemp = storagesTemp.length
-      console.log(x,storagesTemp)
-
       controle.push(storagesTemp)      
     })
     return controle
@@ -106,4 +183,22 @@ export class LocalStorageService {
 
     return localstorage
   }
+
+  retornaExames () {
+    let localstorage = localStorage.getItem('Exames')
+    localstorage = JSON.parse(localstorage)
+
+    return localstorage
+  }
+
+  retornaConsultas () {
+    let localstorage = localStorage.getItem('Consultas')
+    localstorage = JSON.parse(localstorage)
+
+    return localstorage
+  }
 }
+
+
+
+[{"idPaciente":1674766040847,"id":1675107866888,"nomeExame":"Teste exame 1-2","tipoExame":"Teste exame 1Teste","laboratorio":"Teste exame 1Test","urlExame":"","resultados":"Teste exame 1Teste exame 1Teste exame 1Teste exame 1Teste exame 1Teste exame 1"},{"idPaciente":1674766040847,"id":1674671310572,"nomeExame":"Teste exame 1-233333","horaExame":"","tipoExame":"Teste exame 1Teste","laboratorio":"Teste exame 1Test","urlExame":"","resultados":"Teste exame 1Teste exame 1Teste exame 1Teste exame 1Teste exame 1Teste exame 1"}]
