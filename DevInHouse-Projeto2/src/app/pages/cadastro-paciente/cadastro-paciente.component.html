@@ -19,7 +19,7 @@
                     </div>
                     Deletar
                 </button>
-                <button type="submit" value="submit" class="btn btn-primary" [disabled]="formCadastroPaciente.invalid">
+                <button type="submit" value="submit" class="btn btn-primary" [disabled]="formCadastroPaciente.invalid" >
                     <div *ngIf="loaderSalvar == true" class="spinner-border tamanho" role="status">
                         <span class="visually-hidden"></span>
                     </div>
@@ -34,7 +34,10 @@
 
             <div class="d-flex flex-column custom">
                 <label class="form-label" for="nomeCompleto">Nome Completo*</label>
-                <input class="form-control mb-2" type="text" formControlName="nome" >
+                <input class="form-control mb-2 " type="text" formControlName="nome" aria-describedby="validationNome" [ngClass]="formCadastroPaciente.controls['nome'].valid == false && formCadastroPaciente.controls['nome'].value != '' ? 'is-invalid' : ''">
+                <div *ngIf="formCadastroPaciente.controls['nome'].valid == false && formCadastroPaciente.controls['nome'].value != ''" id="validationNome" class="invalid-feedback">
+                    Digite o nome do Paciente. (Campo Obrigatório)
+                </div>
             </div>
 
             <div class="d-flex flex-column medio">
@@ -52,12 +55,18 @@
 
             <div class="d-flex flex-column medio">
                 <label class="form-label" for="cpf">CPF*</label>
-                <input class="form-control mb-2" type="text" formControlName="cpf">
+                <input class="form-control mb-2" type="text" formControlName="cpf" aria-describedby="validationCPF" [ngClass]="formCadastroPaciente.controls['cpf'].valid == false && formCadastroPaciente.controls['cpf'].value != '' ? 'is-invalid' : ''">
+                <div *ngIf="formCadastroPaciente.controls['cpf'].valid == false && formCadastroPaciente.controls['cpf'].value != ''" id="validationCPF" class="invalid-feedback">
+                    Digite o CPF do paciente. Ex.: 123.456.789-10 (Campo Obrigatório)
+                </div>
             </div>
 
             <div class="d-flex flex-column medio">
                 <label class="form-label" for="rg">RG*</label>
-                <input class="form-control mb-2" type="text" formControlName="rg">
+                <input class="form-control mb-2" type="text" formControlName="rg" aria-describedby="validationRG" [ngClass]="formCadastroPaciente.controls['rg'].valid == false && formCadastroPaciente.controls['rg'].value != '' ? 'is-invalid' : ''">
+                <div *ngIf="formCadastroPaciente.controls['rg'].valid == false && formCadastroPaciente.controls['rg'].value != ''" id="validationRG" class="invalid-feedback">
+                    Digite o RG do paciente. Ex.: 1.234.567 (Campo Obrigatório)
+                </div>
             </div>
 
             <div class="d-flex flex-column medio">
@@ -68,26 +77,40 @@
                     <option value="feminino">Divorciado(a)</option>
                     <option value="feminino">Viúvo(a)</option>
                 </select>
+
             </div>
 
             <div class="d-flex flex-column medio">
                 <label class="form-label" for="telefone">Telefone*</label>
-                <input class="form-control mb-2" type="text" formControlName="telefone">
+                <input class="form-control mb-2" type="text" formControlName="telefone" aria-describedby="validationTelefone" [ngClass]="formCadastroPaciente.controls['telefone'].valid == false && formCadastroPaciente.controls['telefone'].value != '' ? 'is-invalid' : ''">
+                <div *ngIf="formCadastroPaciente.controls['telefone'].valid == false && formCadastroPaciente.controls['telefone'].value != ''" id="validationTelefone" class="invalid-feedback">
+                    Digite o telefone do paciente. Ex.: (48) 1234-56789 (Campo Obrigatório)
+                </div>
+
             </div>
 
             <div class="d-flex flex-column medio">
                 <label class="form-label" for="email">E-mail*</label>
-                <input class="form-control mb-2" type="email" formControlName="email">
+                <input class="form-control mb-2" type="email" formControlName="email" aria-describedby="validationEmail" [ngClass]="formCadastroPaciente.controls['email'].valid == false && formCadastroPaciente.controls['email'].value != '' ? 'is-invalid' : ''">
+                <div *ngIf="formCadastroPaciente.controls['email'].valid == false && formCadastroPaciente.controls['email'].value != ''" id="validationEmail" class="invalid-feedback">
+                    Digite o email do paciente. Ex.: exemplo@labmedical.com.br (Campo Obrigatório)
+                </div>
             </div>
 
             <div class="d-flex flex-column medio">
                 <label class="form-label" for="naturalidade">Naturalidade*</label>
-                <input class="form-control mb-2" type="text" formControlName="naturalidade">
+                <input class="form-control mb-2" type="text" formControlName="naturalidade" aria-describedby="validationNaturalidade" [ngClass]="formCadastroPaciente.controls['naturalidade'].valid == false && formCadastroPaciente.controls['naturalidade'].value != '' ? 'is-invalid' : ''">
+                <div *ngIf="formCadastroPaciente.controls['naturalidade'].valid == false && formCadastroPaciente.controls['naturalidade'].value != ''" id="validationNaturalidade" class="invalid-feedback">
+                    Digite a naturalidade do paciente. (Campo Obrigatório)
+                </div>
             </div>
 
             <div class="d-flex flex-column medio">
                 <label class="form-label" for="contatoEmergencia">Contato de Emergência*</label>
-                <input class="form-control mb-2" type="text" formControlName="contatoEmergencia">
+                <input class="form-control mb-2" type="text" formControlName="contatoEmergencia" aria-describedby="validationContatoEmergencia" [ngClass]="formCadastroPaciente.controls['contatoEmergencia'].valid == false && formCadastroPaciente.controls['contatoEmergencia'].value != '' ? 'is-invalid' : ''">
+                <div *ngIf="formCadastroPaciente.controls['contatoEmergencia'].valid == false && formCadastroPaciente.controls['contatoEmergencia'].value != ''" id="validationContatoEmergencia" class="invalid-feedback">
+                    Digite o contato de emergência. Ex.: (48) 1234-56789. (Campo Obrigatório)
+                </div>
             </div>
 
             <div class="d-flex flex-column medio">
@@ -126,7 +149,10 @@
             
             <div class="d-flex flex-column medio">
                 <label class="form-label" for="cep">CEP*</label>
-                <input class="form-control mb-2" type="number" formControlName="cep" (blur)="consultaCEP()" >
+                <input class="form-control mb-2" type="number" formControlName="cep" (blur)="consultaCEP()" aria-describedby="validationCep" [ngClass]="formCadastroPaciente.controls['cep'].valid == false && formCadastroPaciente.controls['cep'].value != '' ? 'is-invalid' : ''">
+                <div *ngIf="formCadastroPaciente.controls['cep'].valid == false && formCadastroPaciente.controls['cep'].value != ''" id="validationCep" class="invalid-feedback">
+                    Digite CEP somente números. (Campo Obrigatório)
+                </div>
             </div>
 
             <div class="d-flex flex-column custom">
@@ -142,6 +168,7 @@
             <div class="d-flex flex-column grande">
                 <label class="form-label" for="logradouro">Logradouro*</label>
                 <input class="form-control mb-2" type="text" formControlName="logradouro" [value]="logradouro">
+
             </div>
 
             <div class="d-flex flex-column pequeno">

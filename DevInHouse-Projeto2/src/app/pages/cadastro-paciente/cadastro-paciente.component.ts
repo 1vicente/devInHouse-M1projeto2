@@ -41,7 +41,7 @@ export class CadastroPacienteComponent implements OnInit{
     ],
     nome: ['', {
           validators: [
-             // Validators.required,
+             Validators.required,
              Validators.minLength(8),
              Validators.maxLength(64)
           ],
@@ -55,7 +55,7 @@ export class CadastroPacienteComponent implements OnInit{
       dataNascimento: [
         '', {
         validators: [
-          // Validators.required,
+          Validators.required,
         ],
         updateOn: 'blur'
         }
@@ -63,7 +63,7 @@ export class CadastroPacienteComponent implements OnInit{
       cpf: [
         '', {
           validators: [
-            // Validators.required,,
+            Validators.required,,
             Validators.pattern('[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}')
           ],
           updateOn: 'blur'
@@ -71,14 +71,15 @@ export class CadastroPacienteComponent implements OnInit{
       rg: [
         '', {
           validators: [
-            // Validators.required,
+            Validators.pattern('[0-9].[0-9]{3}.[0-9]{3}'),
+            Validators.required,
             ],
           updateOn: 'blur'
         }],
       estadoCivil: [
         '', {
           validators: [
-            // Validators.required, 
+            Validators.required, 
           ],
           updateOn: 'blur'
         }],
@@ -86,7 +87,7 @@ export class CadastroPacienteComponent implements OnInit{
       telefone: [
         '', {
           validators: [
-            // Validators.required,
+            Validators.required,
             Validators.pattern('\\([0-9]{2}\\) [0-9]{4}-[0-9]{5}')
           ],
           updateOn: 'blur'
@@ -101,7 +102,7 @@ export class CadastroPacienteComponent implements OnInit{
       naturalidade: [
       '', {
         validators: [
-          // Validators.required,
+          Validators.required,
           Validators.maxLength(64)
         ],
         updateOn: 'blur'
@@ -109,7 +110,7 @@ export class CadastroPacienteComponent implements OnInit{
       contatoEmergencia: [
       '', {
         validators: [
-          // Validators.required,
+          Validators.required,
           Validators.pattern('\\([0-9]{2}\\) [0-9]{4}-[0-9]{5}')
         ],
         updateOn: 'blur'
@@ -139,7 +140,7 @@ export class CadastroPacienteComponent implements OnInit{
       cep: [
       '', {
         validators: [
-          // Validators.required,
+          Validators.required,
           Validators.pattern('[0-9]{8}')
         ],
         updateOn: 'blur'
@@ -147,28 +148,28 @@ export class CadastroPacienteComponent implements OnInit{
       cidade: [
       '', {
         validators: [
-          // Validators.required,
+          Validators.required,
         ],
         updateOn: 'blur'
       }],
       estado: [
       '', {
         validators: [
-          // Validators.required,
+          Validators.required,
         ],
         updateOn: 'blur'
       }],
       logradouro: [
       '', {
         validators: [
-          // Validators.required,
+          Validators.required,
         ],
         updateOn: 'blur'
       }],
       numero: [
       '', {
         validators: [
-          // Validators.required,
+          Validators.required,
         ],
         updateOn: 'blur'
       }],
@@ -179,7 +180,7 @@ export class CadastroPacienteComponent implements OnInit{
       bairro: [
       '', {
         validators: [
-          // Validators.required,
+          Validators.required,
         ],
         updateOn: 'blur'
       }],
