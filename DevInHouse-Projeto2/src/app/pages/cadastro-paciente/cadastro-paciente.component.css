@@ -27,3 +27,8 @@
 .debug {
     background-color: red;
 }
+
+.tamanho {
+    height: 20px;
+    width: 20px;
+}

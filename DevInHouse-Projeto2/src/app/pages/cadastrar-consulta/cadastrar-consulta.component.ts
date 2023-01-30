@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
@@ -21,6 +21,9 @@ export class CadastrarConsultaComponent implements OnInit {
   idConsulta:any;
   data: any;
 
+  loaderDeletar: boolean;
+  loaderEditar: boolean;
+  loaderSalvar: boolean;
 
   formCadastroConsulta = this.fb.group({
       id: ['', {
@@ -65,7 +68,7 @@ export class CadastrarConsultaComponent implements OnInit {
       }]
     })
 
-  constructor(private fb:FormBuilder, private localStorage: LocalStorageService, private route:ActivatedRoute){}
+  constructor(private fb:FormBuilder, private localStorage: LocalStorageService, private route:ActivatedRoute, private router:Router){}
 
   ngOnInit(): void {
 
@@ -122,6 +125,14 @@ export class CadastrarConsultaComponent implements OnInit {
     }
   
   this.retornoCadastro = this.localStorage.cadastraConsulta(CadastroConsulta)
+  if ( this.retornoCadastro == 'cadastrado') {
+    console.log("aqui",  this.retornoCadastro)
+    this.loaderSalvar=true
+    setTimeout(() => {
+      this.router.navigateByUrl('/arealogada')
+      }, 2000);
+   }
+
   }
 
   editaConsulta(){
@@ -136,9 +147,25 @@ export class CadastrarConsultaComponent implements OnInit {
       dosagemPrecaucoes: this.formCadastroConsulta.controls['dosagemPrecaucoes'].value
     }
     this.retornoCadastro = this.localStorage.editaConsulta(editaConsulta, this.idConsulta)
+
+    if ( this.retornoCadastro == 'Consulta Editado') {
+      console.log("aqui",  this.retornoCadastro)
+      this.loaderEditar=true
+      setTimeout(() => {
+        this.router.navigateByUrl('/arealogada')
+        }, 2000);
+     }
   }
 
   removeConsulta() {
-    this.localStorage.removeConsulta(this.idConsulta)
+    this.retornoCadastro = this.localStorage.removeConsulta(this.idConsulta)
+    
+    if ( this.retornoCadastro == 'Consulta Removida') {
+      console.log("aqui",  this.retornoCadastro)
+      this.loaderEditar=true
+      setTimeout(() => {
+        this.router.navigateByUrl('/arealogada')
+        }, 2000);
+     }
   }
 }

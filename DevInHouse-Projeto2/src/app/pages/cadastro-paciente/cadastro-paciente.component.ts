@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 import { FormBuilder, Validator, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { ViacepService } from 'src/app/services/viacep.service';
 import { map, Observable } from 'rxjs';
@@ -28,6 +28,10 @@ export class CadastroPacienteComponent implements OnInit{
   desabilitaEdicao: boolean = true
 
   retorno: any;
+
+  loaderDeletar: boolean;
+  loaderEditar: boolean;
+  loaderSalvar: boolean;
 
   formCadastroPaciente = this.fb.group({
     id: [
@@ -187,7 +191,7 @@ export class CadastroPacienteComponent implements OnInit{
       }
       );
 
-  constructor (private fb: FormBuilder, private localStorage: LocalStorageService, private viacep:ViacepService, private route:ActivatedRoute, private http:HttpClient){}
+  constructor (private fb: FormBuilder, private localStorage: LocalStorageService, private viacep:ViacepService, private route:ActivatedRoute, private http:HttpClient, private router:Router){}
 
   ngOnInit(): void {
     this.idUrl = this.route.snapshot.params['id']
@@ -246,6 +250,14 @@ export class CadastroPacienteComponent implements OnInit{
     }
 
     this.retornoCadastro = this.localStorage.cadastraPaciente(CadastroPaciente)
+
+    if ( this.retornoCadastro == 'cadastrado') {
+      console.log("aqui",  this.retornoCadastro)
+      this.loaderSalvar=true
+      setTimeout(() => {
+        this.router.navigateByUrl('/arealogada')
+        }, 2000);
+     }
   }
 
   editarPaciente (){
@@ -280,6 +292,14 @@ export class CadastroPacienteComponent implements OnInit{
       }
     }
     this.retornoCadastro = this.localStorage.editaPacientes(editarPaciente, this.idPaciente)
+
+    if ( this.retornoCadastro == 'Paciente Editado') {
+      console.log("aqui",  this.retornoCadastro)
+      this.loaderEditar=true
+      setTimeout(() => {
+        this.router.navigateByUrl('/arealogada/cadastar-paciente')
+        }, 2000);
+     }
   }
 
   removerPaciente() {
@@ -290,10 +310,17 @@ export class CadastroPacienteComponent implements OnInit{
     consultas = consultas.filter((consulta: any) =>{ return consulta.idPaciente == this.formCadastroPaciente.controls['id'].value})
 
     if (consultas.length == 0 && consultas.length == 0) {
-      this.localStorage.removerPacientes(this.idPaciente)
+      this.retornoCadastro = this.localStorage.removerPacientes(this.idPaciente)
     } else {
       return console.log("O usuário tem exame e/ou consulta cadastrada")
     }
+    if ( this.retornoCadastro == 'Paciente Removido') {
+      console.log("aqui",  this.retornoCadastro)
+      this.loaderDeletar=true
+      setTimeout(() => {
+        this.router.navigateByUrl('/arealogada/cadastar-paciente')
+        }, 2000);
+     }
   }
 
   async consultaCEP() {
