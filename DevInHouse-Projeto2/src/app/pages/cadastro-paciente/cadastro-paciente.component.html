@@ -7,15 +7,30 @@
             <h2>Identificação</h2>
 
             <div class="">
-                <button type="button" [disabled]="desabilitaEdicao" (click)="editarPaciente()">Editar</button>
-                <button type="button" [disabled]="desabilitaEdicao" (click)="removerPaciente()" >Deletar</button>
-                <button type="submit" value="submit" [disabled]="formCadastroPaciente.invalid">Salvar</button>
+                <button type="button" class="btn btn-outline-secondary" [disabled]="desabilitaEdicao" (click)="editarPaciente()">
+                    <div *ngIf="loaderEditar == true" class="spinner-border tamanho" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                    Editar
+                </button>
+                <button type="button" class="btn btn-outline-danger" [disabled]="desabilitaEdicao" (click)="removerPaciente()" >
+                    <div *ngIf="loaderDeletar == true" class="spinner-border tamanho" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                    Deletar
+                </button>
+                <button type="submit" value="submit" class="btn btn-primary" [disabled]="formCadastroPaciente.invalid">
+                    <div *ngIf="loaderSalvar == true" class="spinner-border tamanho" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                    Salvar
+                </button>
             </div>
         </div>
 
         <div class="d-flex flex-wrap justify-content-between">
 
-            <input class="form-control mb-2" type="text" formControlName="id">
+            <input class="form-control mb-2" type="text" formControlName="id" hidden>
 
             <div class="d-flex flex-column custom">
                 <label class="form-label" for="nomeCompleto">Nome Completo*</label>

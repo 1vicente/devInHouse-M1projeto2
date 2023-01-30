@@ -17,10 +17,12 @@
                     <input class="form-control mb-3" type="email" name="emailLogin" [(ngModel)]="emailLogin">
                     <label class="form-label" for="senha-login">Senha</label>
                     <input class="form-control mb-5" type="password" name="senhaLogin" [(ngModel)]="senhaLogin">
-                    <button routerLink="/arealogada" class="mb-5 btn btn-primary" type="submit" value="submit">
+                    <button class="mb-5 btn btn-primary" type="submit" value="submit">
+                        <div *ngIf="loader == true" class="spinner-border tamanho" role="status">
+                            <span class="visually-hidden"></span>
+                        </div>
                         Entrar!
                     </button>
-                    <p *ngIf="controleLogin===true">Logado com sucesso!</p>
                     <p *ngIf="controleLogin===false" class="alert alert-danger text-center" >Usuário e/ou senha inválidos</p>
                 </form>
 
@@ -29,9 +31,6 @@
 
                     <div *ngIf="alert==true" class="alert alert-danger text-center" role="alert">
                         Função desabilitada temporariamente.
-                    </div>
-                    <div *ngIf="alert==true" class="invalid-feedback" role="alert">
-                        Looks good!
                     </div>
                 </div>
             </div>

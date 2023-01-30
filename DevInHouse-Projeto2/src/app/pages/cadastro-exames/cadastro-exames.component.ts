@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, RouteConfigLoadEnd } from '@angular/router';
+import { ActivatedRoute, RouteConfigLoadEnd, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
@@ -21,6 +21,11 @@ export class CadastroExamesComponent {
   idExame:any;
   idUrl:any;
   exameFiltrado:any;
+
+  loaderDeletar: boolean;
+  loaderEditar: boolean;
+  loaderSalvar: boolean;
+
 
   formCadastroExames = this.fb.group({
       id: ['', {
@@ -73,7 +78,7 @@ export class CadastroExamesComponent {
     }]
     })
 
-  constructor(private fb:FormBuilder, private localStorage: LocalStorageService, private route: ActivatedRoute){}
+  constructor(private fb:FormBuilder, private localStorage: LocalStorageService, private route: ActivatedRoute, private router:Router){}
 
   ngOnInit(): void {
     this.infoPacientes = this.localStorage.retornaPacientes()
@@ -126,8 +131,15 @@ export class CadastroExamesComponent {
     }
   
   this.retornoCadastro = this.localStorage.cadastraExames(CadastroExames)
-  console.log(CadastroExames)
-  console.log(this.retornoCadastro)
+
+  if ( this.retornoCadastro == 'cadastrado') {
+    console.log("aqui",  this.retornoCadastro)
+    this.loaderSalvar=true
+    setTimeout(() => {
+      this.router.navigateByUrl('/arealogada')
+      }, 2000);
+   }
+
   }
 
   editaExame(){
@@ -143,10 +155,26 @@ export class CadastroExamesComponent {
       resultados: this.formCadastroExames.controls['resultados'].value
     }
     this.retornoCadastro = this.localStorage.editaExame(editaExame, this.idExame)
+
+    if ( this.retornoCadastro == 'Exame Editado') {
+      console.log("aqui",  this.retornoCadastro)
+    this.loaderEditar=true
+    setTimeout(() => {
+      this.router.navigateByUrl('/arealogada/cadastar-exames')
+      }, 2000);
+    }
   }
 
   removeExame() {
-    this.localStorage.removeExame(this.idExame)
+    let deeltaExame = this.localStorage.removeExame(this.idExame)
+
+    if ( deeltaExame == 'Exame Removido') {
+      console.log("aqui",  this.retornoCadastro)
+      this.loaderDeletar=true
+        setTimeout(() => {
+        this.router.navigateByUrl('/arealogada/cadastar-exames')
+        }, 2000);
+    }
   }
 }
 

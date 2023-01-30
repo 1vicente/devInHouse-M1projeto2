@@ -31,3 +31,8 @@ input {
     border: 1px solid #5C5F63;
     border-radius: 8px;
 }
+
+.tamanho {
+    height: 20px;
+    width: 20px;
+}

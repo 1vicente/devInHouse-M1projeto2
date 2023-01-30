@@ -140,6 +140,7 @@ export class LocalStorageService {
     localStorage.setItem('Exames', JSON.stringify(this.localStorageExames))
     return "cadastrado"
   }
+  
   editaExame(exame:any, idexame:any){
     this.localStorageExames = localStorage.getItem('Exames')
     this.localStorageExames = JSON.parse(this.localStorageExames)
