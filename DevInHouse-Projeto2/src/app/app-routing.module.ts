@@ -60,6 +60,10 @@ const routes: Routes = [
         path: 'cadastar-exames',
         component: CadastroExamesComponent
       },
+      {
+        path: 'cadastar-exames/editar/:id',
+        component: CadastroExamesComponent
+      },
     ]
   },  
   // { path: '**', 
