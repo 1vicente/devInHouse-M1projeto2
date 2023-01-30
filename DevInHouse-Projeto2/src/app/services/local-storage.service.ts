@@ -140,6 +140,27 @@ export class LocalStorageService {
     localStorage.setItem('Exames', JSON.stringify(this.localStorageExames))
     return "cadastrado"
   }
+  editaExame(exame:any, idexame:any){
+    this.localStorageExames = localStorage.getItem('Exames')
+    this.localStorageExames = JSON.parse(this.localStorageExames)
+    let examesTemp = this.localStorageExames.filter((exameFiltro: any) =>{ return exameFiltro['id'] != idexame })
+
+    examesTemp.push(exame)
+    console.log(examesTemp)
+    localStorage.setItem('Exames', JSON.stringify(examesTemp))
+    return "Exame Editado"
+  }
+
+  removeExame(idexame:any){
+    this.localStorageExames = localStorage.getItem('Exames')
+    this.localStorageExames = JSON.parse(this.localStorageExames)
+    let exameTemp = this.localStorageExames.filter((exameFiltro: any) =>{ return exameFiltro['id'] != idexame })
+    console.log(exameTemp)
+    localStorage.setItem('Exames', JSON.stringify(exameTemp))
+    return "Exame Removido"
+
+  }
+
 
   estatisticasSistema (){
 
@@ -176,3 +197,7 @@ export class LocalStorageService {
     return localstorage
   }
 }
+
+
+
+[{"idPaciente":1674766040847,"id":1675107866888,"nomeExame":"Teste exame 1-2","tipoExame":"Teste exame 1Teste","laboratorio":"Teste exame 1Test","urlExame":"","resultados":"Teste exame 1Teste exame 1Teste exame 1Teste exame 1Teste exame 1Teste exame 1"},{"idPaciente":1674766040847,"id":1674671310572,"nomeExame":"Teste exame 1-233333","horaExame":"","tipoExame":"Teste exame 1Teste","laboratorio":"Teste exame 1Test","urlExame":"","resultados":"Teste exame 1Teste exame 1Teste exame 1Teste exame 1Teste exame 1Teste exame 1"}]

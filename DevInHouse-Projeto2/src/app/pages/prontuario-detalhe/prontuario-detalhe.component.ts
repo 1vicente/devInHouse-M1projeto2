@@ -34,8 +34,9 @@ export class ProntuarioDetalheComponent implements OnInit{
 
     this.ordenado = this.consultas.concat(this.exames).sort((a:any, b:any) => {
       return a.id - b.id;  });
+
+    console.log(this.ordenado)
  
   }
 
 }
-

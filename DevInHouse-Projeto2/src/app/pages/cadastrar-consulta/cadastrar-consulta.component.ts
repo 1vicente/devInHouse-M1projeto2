@@ -19,6 +19,7 @@ export class CadastrarConsultaComponent implements OnInit {
   idUrl: any;
   consultaFiltrado:any;
   idConsulta:any;
+  data: any;
 
 
   formCadastroConsulta = this.fb.group({
@@ -75,17 +76,21 @@ export class CadastrarConsultaComponent implements OnInit {
     this.idUrl = this.route.snapshot.params['id']
     if (this.idUrl != undefined) {
       this.desabilitaEdicao = false
-      let pacientes:any = this.localStorage.retornaConsultas()
+      let consulta:any = this.localStorage.retornaConsultas()
       
-      this.consultaFiltrado = pacientes.find((paciente: any) =>{ return paciente['id'] == this.idUrl })
+      this.consultaFiltrado = consulta.find((paciente: any) =>{ return paciente['id'] == this.idUrl })
 
       this.idConsulta = this.consultaFiltrado['id']
 
-      let campoPacienteForm: any = ['id','motivoConsulta','dataConsulta','descricaoProblema','medicacaoReceitada','dosagemPrecaucoes']
+      let campConsultaForm: any = ['id','motivoConsulta','dataConsulta','descricaoProblema','medicacaoReceitada','dosagemPrecaucoes']
 
-      campoPacienteForm.forEach((x:any ) => {
+      campConsultaForm.forEach((x:any ) => {
         this.formCadastroConsulta.controls[x].setValue(this.consultaFiltrado[x])     })
       
+        this.data = this.consultaFiltrado.dataConsulta
+
+        console.log(this.data)
+
       let paciente:any = this.infoPacientes.filter(paciente => { return paciente.paciente.id == this.consultaFiltrado.idPaciente})
 
       this.digitado = paciente[0].paciente.nome
@@ -108,6 +113,7 @@ export class CadastrarConsultaComponent implements OnInit {
   let CadastroConsulta = {
       idPaciente: this.infoPacientesFiltrados[0].paciente["id"],
       id: Date.now(),
+      tipo: "consulta",
       motivoConsulta: this.formCadastroConsulta.controls['motivoConsulta'].value,
       dataConsulta: this.formCadastroConsulta.controls['dataConsulta'].value,
       descricaoProblema: this.formCadastroConsulta.controls['descricaoProblema'].value,
@@ -122,6 +128,7 @@ export class CadastrarConsultaComponent implements OnInit {
     let editaConsulta = {
       idPaciente: this.infoPacientesFiltrados[0].paciente["id"],
       id: this.formCadastroConsulta.controls['id'].value,
+      tipo: "consulta",
       motivoConsulta: this.formCadastroConsulta.controls['motivoConsulta'].value,
       dataConsulta: this.formCadastroConsulta.controls['dataConsulta'].value,
       descricaoProblema: this.formCadastroConsulta.controls['descricaoProblema'].value,
