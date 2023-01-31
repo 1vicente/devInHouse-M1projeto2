@@ -6,14 +6,14 @@
         <div class="d-flex justify-content-between ">
             <h2>Identificação</h2>
 
-            <div class="">
+            <div class="gap">
                 <button type="button" class="btn btn-outline-secondary" [disabled]="desabilitaEdicao" (click)="editarPaciente()">
                     <div *ngIf="loaderEditar == true" class="spinner-border tamanho" role="status">
                         <span class="visually-hidden"></span>
                     </div>
                     Editar
                 </button>
-                <button type="button" class="btn btn-outline-danger" [disabled]="desabilitaEdicao" (click)="removerPaciente()" >
+                <button type="button" class="btn btn-outline-danger ms-2 me-2" [disabled]="desabilitaEdicao" (click)="removerPaciente()" >
                     <div *ngIf="loaderDeletar == true" class="spinner-border tamanho" role="status">
                         <span class="visually-hidden"></span>
                     </div>
