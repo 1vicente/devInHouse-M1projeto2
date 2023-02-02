@@ -198,7 +198,3 @@ export class LocalStorageService {
     return localstorage
   }
 }
-
-
-
-[{"idPaciente":1674766040847,"id":1675107866888,"nomeExame":"Teste exame 1-2","tipoExame":"Teste exame 1Teste","laboratorio":"Teste exame 1Test","urlExame":"","resultados":"Teste exame 1Teste exame 1Teste exame 1Teste exame 1Teste exame 1Teste exame 1"},{"idPaciente":1674766040847,"id":1674671310572,"nomeExame":"Teste exame 1-233333","horaExame":"","tipoExame":"Teste exame 1Teste","laboratorio":"Teste exame 1Test","urlExame":"","resultados":"Teste exame 1Teste exame 1Teste exame 1Teste exame 1Teste exame 1Teste exame 1"}]
